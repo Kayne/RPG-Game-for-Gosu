@@ -29,7 +29,7 @@ class GameWindow < Window
   
   def draw
     @scene.draw
-    @fps.draw
+    @fps.draw if @fps.show_fps?
     if @pause == true
       @font.draw("PAUSE", 220, 220, 20)
     end
@@ -55,6 +55,9 @@ class GameWindow < Window
     end
     if id == KbP
       @pause = (@pause == true) ? false : true
+    end
+    if id == KbF
+      @fps.show_fps = (@fps.show_fps?) ? false : true
     end
   end
 end

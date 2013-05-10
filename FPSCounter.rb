@@ -10,8 +10,12 @@
       @font = Font.new(window, $config['font_name'], $config['font_size'])
       @frames_counter = 0
       @milliseconds_before = Gosu::milliseconds
-      @show_fps = true
+      @show_fps = false
       @fps = 0
+    end
+
+    def show_fps?
+      @show_fps
     end
     
     def update
