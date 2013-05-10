@@ -1,13 +1,13 @@
  First line is ignored --- To use correctly X and Y use tiles, not pixels, for example x:5 not x:176
-x:4
-y:4
-filename:npc2
+x:3
+y:3
+filename:npc5
 movement:random
 face:down
 solid:true
 width:32
-height:48
-speed:2
-sound:
+height:32
+speed:5
+sound:kotek.wav
 route:
 commands:

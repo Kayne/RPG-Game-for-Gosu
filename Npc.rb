@@ -4,22 +4,31 @@ class Npc
   attr_accessor :z
   attr_accessor :direccion
   attr_reader :solid
-  def initialize(window, x, y, filename, movement=:static, face=:down, solid=true, route='', commands='')
+  def initialize(window, x, y, filename, movement=:static, face=:down, solid=true, width=32, height=48, speed=2, sound=nil, route='', commands='')
     @window = window
     @x = (x*32)
     @y = (y*32)-24
     @z = 2
     @movement_type = movement
     @face = face
-    @poses = Image.load_tiles(window, "./media/charasets/"+filename+".png", 32, 48, false)
+    @poses = Image.load_tiles(window, "./media/charasets/"+filename+".png", width.to_i, height.to_i, false)
     @pose = @poses[0]
     @direccion = :down
     @solid = solid
     @route = route
     @commands = commands
-    @speed = 2
+    @speed = speed
     @step = 15
+    @music = (sound.nil? or sound == '') ? nil : Sample.new("./media/sounds/"+sound)
+    @musicInstance = nil
   end
+
+  def play_sound_if_any
+    if (@musicInstance.nil? or not @musicInstance.playing?) and not @music.nil?
+      @musicInstance = @music.play
+    end
+  end
+
   def walk
     case @direccion
       when :up

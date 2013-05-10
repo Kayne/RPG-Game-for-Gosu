@@ -5,5 +5,9 @@ filename:npc3
 movement:random
 face:left
 solid:true
+width:32
+height:48
+speed:2
+sound:
 route:
 commands:

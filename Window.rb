@@ -5,6 +5,7 @@ class GameWindow < Window
   attr_reader :screen_y
   attr_reader :character
   attr_accessor :scene
+  attr_accessor :pause
 
   def initialize
     super(640, 480, false)

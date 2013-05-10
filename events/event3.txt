@@ -5,5 +5,9 @@ filename:npc
 movement:random
 face:down
 solid:true
+width:32
+height:48
+speed:2
+sound:
 route:
 commands:

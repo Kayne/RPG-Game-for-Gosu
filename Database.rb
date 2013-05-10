@@ -32,9 +32,24 @@
       
       solid = npc_load[6]
       solid.gsub!('solid:', '') 
-      solid = eval(solid)   
+      solid = eval(solid)
+
+      width = npc_load[7]
+      width.gsub!('width:', '') 
+      width = eval(width)
+
+      height = npc_load[8]
+      height.gsub!('height:', '') 
+      height = eval(height)
+
+      speed = npc_load[9]
+      speed.gsub!('speed:', '') 
+      speed = eval(speed)
+
+      sound = npc_load[10]
+      sound.gsub!('sound:', '') 
       
-      route = npc_load[7] 
+      route = npc_load[11] 
       route.gsub!('route:', '')
       
       commands = []
@@ -43,7 +58,7 @@
         commands.push(npc_load[i]) 
       end
       commands.to_s.gsub!('commands:', '')
-      return x.to_i,y.to_i,filename,movement,face,solid,route,commands
+      return x.to_i,y.to_i,filename,movement,face,solid,width,height,speed,sound,route,commands
     end
     
   end

@@ -19,6 +19,9 @@ class Player
     @direccion = $config['player_direccion']
     @speed = 3
     @show_info = false
+
+    @music = Sample.new("./media/sounds/kotek.wav")
+    @musicInstance = nil
     
   end
 
@@ -98,6 +101,15 @@ class Player
 
     if @show_info
       @font.draw("#{@window.character.name}, poziom: #{@window.character.level}", 200, 0, 20)
+    end
+
+    if @window.button_down?(Button::KbReturn)
+      if @window.scene.solid_event_infront?(self)
+        @window.pause = true
+        npc = @window.scene.get_solid_event_infront(self)
+        @window.pause = false
+        npc.play_sound_if_any if not npc.nil?
+      end
     end
   end
   
