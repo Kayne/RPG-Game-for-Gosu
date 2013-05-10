@@ -100,7 +100,7 @@ class Player
     @pose.draw(@x - @window.scene.screen_x,@y - @window.scene.screen_y, @z)
 
     if @show_info
-      @font.draw("#{@window.character.name}, poziom: #{@window.character.level}", 200, 0, 20)
+      @font.draw("#{@window.character.name}, level: #{@window.character.level} (#{@window.character.exp} na #{@window.character.level*100} EXP), #{@window.character.hp} HP", 200, 0, 20)
     end
 
     if @window.button_down?(Button::KbReturn)
