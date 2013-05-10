@@ -11,11 +11,10 @@ class Scene_Map
     @player = Player.new(@window, $config['player_x'], $config['player_y'])
     @npcs = []
     for npc in @mapa.npcs
-      x,y,filename,movement,face,solid,width,height,speed,sound,route,commands = *Database.load_npcs(npc)
-      @npcs.push(Npc.new(@window, x, y, filename, movement, face, solid, width, height, speed, sound, route, commands))
+      @npcs.push(Npc.new(@window, *Database.load_npcs(npc)))
     end
   end
-  
+
   def solid_event_infront?(character)
     case character.direccion
       when :left
