@@ -2,7 +2,7 @@ include Gosu
 
 class Scene_Menu
   attr_accessor :menu
-  
+
   def initialize(window)
     #@font = Font.new(window, "Verdana", 18)
     @window = window
@@ -10,8 +10,8 @@ class Scene_Menu
     x = @window.width / 2 - 100
     y = @window.height  / 2 - 100
     lineHeight = 50
-    items = Array["exit", "item"]
-    actions = Array[lambda { @window.close }, lambda { @fading = :out }]
+    items = Array["item", "exit"]
+    actions = Array[lambda { @fading = :out }, lambda { @window.close }]
     @menu = Menu.new(@window)
     for i in (0..items.size - 1)
       @menu.add_item(Gosu::Image.new(@window, "./media/menu/#{items[i]}.png", false), x, y, 1, actions[i], Gosu::Image.new(@window, "./media/menu/#{items[i]}_hover.png", false))
@@ -52,12 +52,6 @@ class Scene_Menu
     @background.draw(0,0,0)
     @window.draw_quad(0, 0, @color, 640, 0, @color, 0, 480, @color, 640, 480, @color, 500)   
     @menu.draw
-  end
-
-  def button_down (id)
-    if id == Gosu::MsLeft then
-      @menu.clicked
-    end
   end
   
 end

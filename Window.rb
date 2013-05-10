@@ -12,6 +12,7 @@ class GameWindow < Window
     @character = Character.new("Jack", 1)
     @scene = Scene_Intro.new(self)
     @fps = FPSCounter.new(self)
+    @beep = Sample.new("./media/sounds/accept.ogg")
   end
   
   def needs_cursor?; true; end
@@ -28,12 +29,17 @@ class GameWindow < Window
 
   def button_down(id)
     if id == KbEscape
-      close
+      if @scene.kind_of?(Scene_Map)
+        @scene = Transition.new(self, Scene_Menu.new(self), :in, false)#Scene_Title.new(@window)
+      else
+        close
+      end
     end
     if id == KbC
       @scene.player.show_info!
     end
     if id == MsLeft and @scene.kind_of?(Scene_Menu)
+      @beep.play
       @scene.menu.clicked
     end
   end
