@@ -13,22 +13,30 @@ class GameWindow < Window
     @scene = Scene_Intro.new(self)
     @fps = FPSCounter.new(self)
     @beep = Sample.new("./media/sounds/accept.ogg")
+    @pause = false
+    @font = Font.new(self, $config['font_name'], 25)
   end
   
   def needs_cursor?; true; end
 
   def update
-    @scene.update
-    @fps.update
+    if @pause == false
+      @scene.update
+      @fps.update
+    end
   end
   
   def draw
     @scene.draw
     @fps.draw
+    if @pause == true
+      @font.draw("PAUSE", 220, 220, 20)
+    end
   end
 
   def button_down(id)
     if id == KbEscape
+      @pause = false
       if @scene.kind_of?(Scene_Map)
         $config['player_x'], $config['player_y'] =  @scene.player.get_actual_position
         $config['player_direccion'] = @scene.player.direccion
@@ -43,6 +51,9 @@ class GameWindow < Window
     if id == MsLeft and @scene.kind_of?(Scene_Menu)
       @beep.play
       @scene.menu.clicked
+    end
+    if id == KbP
+      @pause = (@pause == true) ? false : true
     end
   end
 end
