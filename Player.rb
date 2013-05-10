@@ -5,18 +5,27 @@ class Player
   attr_accessor :y
   attr_accessor :z
   attr_accessor :direccion
+  attr_reader :start_x, :start_y
   def initialize(window, x, y)
     @window = window
+    @font = Font.new(@window, $config['font_name'], $config['font_size'])
+
     @x = ((x-1)*32)
     @y = ((y-1)*32)-24
     @z = 3
+
     @poses = Gosu::Image.load_tiles(@window, $config['character_graphic'], 32, 48, false)
     @pose = @poses[0]
-    @direccion = :down
+    @direccion = $config['player_direccion']
     @speed = 3
     @show_info = false
-    @font = Font.new(@window, $config['font_name'], $config['font_size'])
+    
   end
+
+  def get_actual_position
+    [(@x/32+1), ((@y+24)/32+1)]
+  end
+
   def walk
     case @direccion
       when :up

@@ -8,7 +8,7 @@ class Scene_Map
     @screen_x = 0
     @screen_y = 0
     @mapa = Map.new(@window, map, tileset)
-    @player = Player.new(@window, 7, 4)
+    @player = Player.new(@window, $config['player_x'], $config['player_y'])
     @npcs = []
     for npc in @mapa.npcs
       x,y,filename,movement,face,solid,route,commands = *Database.load_npcs(npc)

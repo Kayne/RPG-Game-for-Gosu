@@ -30,7 +30,9 @@ class GameWindow < Window
   def button_down(id)
     if id == KbEscape
       if @scene.kind_of?(Scene_Map)
-        @scene = Transition.new(self, Scene_Menu.new(self), :in, false)#Scene_Title.new(@window)
+        $config['player_x'], $config['player_y'] =  @scene.player.get_actual_position
+        $config['player_direccion'] = @scene.player.direccion
+        @scene = Transition.new(self, Scene_Menu.new(self), :in, false)
       else
         close
       end

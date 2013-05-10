@@ -4,3 +4,6 @@ $config["map"] = "./media/maps/Test Map.txt"
 $config["map_graphic"] = "./media/tileset.png"
 $config['font_size'] = 18
 $config['font_name'] = "Verdana"
+$config['player_x'] = 7
+$config['player_y'] = 3
+$config['player_direccion'] = :down
