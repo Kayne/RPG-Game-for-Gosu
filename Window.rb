@@ -33,5 +33,8 @@ class GameWindow < Window
     if id == KbC
       @scene.player.show_info!
     end
+    if id == MsLeft and @scene.kind_of?(Scene_Menu)
+      @scene.menu.clicked
+    end
   end
 end

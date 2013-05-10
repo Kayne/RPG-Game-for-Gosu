@@ -31,7 +31,8 @@ class Scene_Intro
       end
     when :out
       if @fade_time >= 255
-        @window.scene = Transition.new(@window, Scene_Map.new(@window, $config['map'], $config['map_graphic']), :in, false)#Scene_Title.new(@window)
+        #@window.scene = Transition.new(@window, Scene_Map.new(@window, $config['map'], $config['map_graphic']), :in, false)#Scene_Title.new(@window)
+        @window.scene = Transition.new(@window, Scene_Menu.new(@window), :in, false)#Scene_Title.new(@window)
       else
         @fade_time += 15 # 15 is cool
       end

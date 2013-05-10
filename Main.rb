@@ -11,6 +11,8 @@ require './FPSCounter.rb'
 require './Character.rb'
 require './Effects.rb'
 require './Scene_Intro.rb'
+require './Scene_Menu.rb'
+require './Menu.rb'
 
 window = GameWindow.new
 window.show
