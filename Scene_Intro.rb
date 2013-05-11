@@ -9,6 +9,7 @@ class Scene_Intro
     @fading = :in
     @fade_time = 255
     @color = Color.new(@fade_time, 0, 0 ,0)
+    @window.audio.play_music("FromHere.ogg")
   end
   
   def button_down(id)

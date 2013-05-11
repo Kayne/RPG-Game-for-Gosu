@@ -19,10 +19,6 @@ class Player
     @direccion = $config['player_direccion']
     @speed = 3
     @show_info = false
-
-    @music = Sample.new("./media/sounds/kotek.wav")
-    @musicInstance = nil
-    
   end
 
   def get_actual_position

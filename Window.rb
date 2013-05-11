@@ -6,14 +6,15 @@ class GameWindow < Window
   attr_reader :character
   attr_accessor :scene
   attr_accessor :pause
+  attr_accessor :audio
 
   def initialize
     super(640, 480, false)
     self.caption = "Projekt"
     @character = Character.new("Jack", 1)
+    @audio = Audio.new(self)
     @scene = Scene_Intro.new(self)
     @fps = FPSCounter.new(self)
-    @beep = Sample.new("./media/sounds/accept.ogg")
     @pause = false
     @font = Font.new(self, $config['font_name'], 25)
   end
@@ -50,7 +51,7 @@ class GameWindow < Window
       @scene.player.show_info!
     end
     if id == MsLeft and @scene.kind_of?(Scene_Menu)
-      @beep.play
+      @audio.play_sound_effect("accept.ogg")
       @scene.menu.clicked
     end
     if id == KbP

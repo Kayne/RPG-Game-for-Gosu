@@ -7,3 +7,4 @@ $config['font_name'] = "Verdana"
 $config['player_x'] = 7
 $config['player_y'] = 3
 $config['player_direccion'] = :down
+$config['audio_path'] = 'media/audio/'

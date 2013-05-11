@@ -13,6 +13,7 @@ require './Effects.rb'
 require './Scene_Intro.rb'
 require './Scene_Menu.rb'
 require './Menu.rb'
+require './Audio.rb'
 
 window = GameWindow.new
 window.show

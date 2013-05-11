@@ -19,13 +19,15 @@ class Npc
     @commands = commands
     @speed = speed
     @step = 15
-    @music = (sound.nil? or sound == '') ? nil : Sample.new("./media/sounds/"+sound)
+    #@music = (sound.nil? or sound == '') ? nil : Sample.new("./media/sounds/"+sound)
     @musicInstance = nil
+    @audio = Audio.new(@window)
+    @sound = sound
   end
 
   def play_sound_if_any
-    if (@musicInstance.nil? or not @musicInstance.playing?) and not @music.nil?
-      @musicInstance = @music.play
+    if (@musicInstance.nil? or not @musicInstance.playing?)
+      @musicInstance = @audio.play_sound_effect(@sound)
     end
   end
 
