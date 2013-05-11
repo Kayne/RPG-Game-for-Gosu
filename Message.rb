@@ -23,7 +23,7 @@ class Message
   end
 
   def draw
-    @box.drawBox(@window.width/2-100, @window.height/2-100, 200, 200)
-    @font.draw(@message, @window.width/2-90, @window.height/2-90, 20)
+    @box.drawBox(0, @window.height-100, @window.width, 100, 10)
+    @font.draw(@message, 10, @window.height-90, 20)
   end
 end
