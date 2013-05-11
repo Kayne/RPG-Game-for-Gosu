@@ -18,7 +18,6 @@ class Player
     @pose = @poses[0]
     @direccion = $config['player_direccion']
     @speed = 3
-    @show_info = false
   end
 
   def get_actual_position
@@ -45,10 +44,6 @@ class Player
         end
     end
     return [@x, @y]
-  end
-
-  def show_info!
-    @show_info = (@show_info == true) ? false : true;
   end
   
   def draw
@@ -95,21 +90,12 @@ class Player
     end
     @pose.draw(@x - @window.scene.screen_x,@y - @window.scene.screen_y, @z)
 
-    if @show_info
-      @font.draw("#{@window.character.name}, level: #{@window.character.level} (#{@window.character.exp} na #{@window.character.level*100} EXP), #{@window.character.hp} HP", 200, 0, 20)
-    end
-
-    if @window.button_down?(Button::KbReturn)
-      if @window.scene.solid_event_infront?(self)
-        @window.pause = true
-        npc = @window.scene.get_solid_event_infront(self)
-        @window.pause = false
-        npc.play_sound_if_any if not npc.nil?
-      end
-    end
   end
-  
+
   def update
+
+    meet_npc
+
     @x_pies = @x + (@pose.width/2)
     @y_pies = @y + @pose.height
     if @window.button_down?(Button::KbLeft) and @x > 0 - @window.scene.screen_x
@@ -145,5 +131,19 @@ class Player
       end
     end
     self.draw
+  end
+
+  def meet_npc
+    if @window.button_down?(Button::KbReturn) and if @window.scene.solid_event_infront?(self)
+        @window.pause = true
+        npc = @window.scene.get_solid_event_infront(self)
+        if not npc.nil?
+          npc.play_sound_if_any
+          @window.message.message = npc.message
+          @window.message.show = true
+        end
+        @window.pause = false
+      end
+    end
   end
 end

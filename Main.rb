@@ -14,6 +14,11 @@ require './Scene_Intro.rb'
 require './Scene_Menu.rb'
 require './Menu.rb'
 require './Audio.rb'
+require './Message.rb'
+require './Window_Extras.rb'
+require './Window_Selectable.rb'
+require './Window_Menu.rb'
+require './Scene_Character.rb'
 
 window = GameWindow.new
 window.show

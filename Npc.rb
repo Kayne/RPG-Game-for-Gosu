@@ -4,6 +4,7 @@ class Npc
   attr_accessor :z
   attr_accessor :direccion
   attr_reader :solid
+  attr_reader :message
   def initialize(window, x, y, filename, movement=:static, face=:down, solid=true, width=32, height=48, speed=2, sound=nil, route='', commands='')
     @window = window
     @x = (x*32)
@@ -23,6 +24,7 @@ class Npc
     @musicInstance = nil
     @audio = Audio.new(@window)
     @sound = sound
+    @message = "Tekst ;)"
   end
 
   def play_sound_if_any
