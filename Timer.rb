@@ -21,6 +21,5 @@ class Timer
       @callback.call
       @finished = true
     end
-    puts @seconds
   end
 end
