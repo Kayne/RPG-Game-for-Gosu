@@ -22,14 +22,15 @@ class Npc
     @step = 15
     #@music = (sound.nil? or sound == '') ? nil : Sample.new("./media/sounds/"+sound)
     @musicInstance = nil
-    @audio = Audio.new(@window)
     @sound = sound
     @message = "Tekst ;)"
   end
 
   def play_sound_if_any
-    if (@musicInstance.nil? or not @musicInstance.playing?)
-      @musicInstance = @audio.play_sound_effect(@sound)
+    if @sound != '' and not @sound.nil?
+      if (@musicInstance.nil? or not @musicInstance.playing?)
+        @musicInstance = @window.audio.play_sound_effect(@sound)
+      end
     end
   end
 
