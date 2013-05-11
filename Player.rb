@@ -134,15 +134,14 @@ class Player
   end
 
   def meet_npc
-    if @window.button_down?(Button::KbReturn) and if @window.scene.solid_event_infront?(self)
-        @window.pause = true
-        npc = @window.scene.get_solid_event_infront(self)
-        if not npc.nil?
-          npc.play_sound_if_any
-          @window.message.message = npc.message
-          @window.message.show = true
-        end
-        @window.pause = false
+    if @window.button_down?(Button::KbReturn) and @window.scene.solid_event_infront?(self)
+      @window.pause = true
+      npc = @window.scene.get_solid_event_infront(self)
+      if not npc.nil?
+        npc.play_sound_if_any
+        @window.message.message = npc.message
+        @window.message.show = true
+        @window.timers << Timer.new(2, lambda {@window.message.hide_message; @window.pause = false})
       end
     end
   end

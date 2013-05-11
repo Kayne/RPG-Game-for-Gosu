@@ -8,6 +8,7 @@ class GameWindow < Window
   attr_accessor :pause
   attr_accessor :audio
   attr_accessor :message
+  attr_accessor :timers
 
   def initialize
     super(640, 480, false)
@@ -19,6 +20,7 @@ class GameWindow < Window
     @pause = false
     @font = Font.new(self, $config['font_name'], 25)
     @message = Message.new(self)
+    @timers = Array.new
   end
   
   def needs_cursor?; true; end
@@ -28,12 +30,14 @@ class GameWindow < Window
       @scene.update
       @fps.update
     end
+    @timers.each { |t| t.update }
+    @timers.delete_if { |t| t.finished? }
   end
   
   def draw
     @scene.draw
     @fps.draw if @fps.show_fps?
-    if @pause == true
+    if @pause == true and not @message.show?
       @font.draw("PAUSE", 220, 220, 20)
     end
     if @message.show?
@@ -44,6 +48,11 @@ class GameWindow < Window
   def button_down(id)
     if @scene.kind_of?(Scene_Character)
       @scene.window_menu.button_down(id)
+    end
+
+    if @message.show? and id == KbReturn
+      @message.hide_message
+      @pause = false
     end
 
     if id == KbEscape

@@ -14,6 +14,11 @@ class Message
     @box.colors
   end
 
+  def hide_message
+    @message = ""
+    @show = false
+  end
+
   def show?
     @show
   end

@@ -19,6 +19,7 @@ require './Window_Extras.rb'
 require './Window_Selectable.rb'
 require './Window_Menu.rb'
 require './Scene_Character.rb'
+require './Timer.rb'
 
 window = GameWindow.new
 window.show
