@@ -1,13 +1,12 @@
 class Character
   attr_reader :name, :level, :max_hp, :hp, :exp
 
-  def initialize(name, level)
-    @name, @level, @hp, @max_hp, @exp = name, level, 100, 100, 0
+  def initialize(name, level, hp, max_hp, exp)
+    @name, @level, @hp, @max_hp, @exp = name, level, hp, max_hp, exp
   end
 
   def next_level?
-    return true if @exp >= @level * 100
-    return false
+    @exp >= @level * 100
   end
 
   def next_level
@@ -23,8 +22,7 @@ class Character
   end
 
   def dead?
-    return true if @hp <= 0
-    return false
+    @hp <= 0
   end
 
   def heal hp

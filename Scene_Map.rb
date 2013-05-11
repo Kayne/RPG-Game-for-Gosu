@@ -1,16 +1,13 @@
 class Scene_Map
-  attr_reader :mapa
-  attr_reader :player
-  attr_reader :screen_x
-  attr_reader :screen_y
+  attr_reader :mapa, :player, :screen_x, :screen_y
+
   def initialize(window, map, tileset)
     @window = window
-    @screen_x = 0
-    @screen_y = 0
+    @screen_x, @screen_y = 0, 0
     @mapa = Map.new(@window, map, tileset)
     @player = Player.new(@window, $config['player_x'], $config['player_y'])
-    @npcs = []
-    for npc in @mapa.npcs
+    @npcs = Array.new
+    @mapa.npcs.each do |npc|
       @npcs.push(Npc.new(@window, *Database.load_npcs(npc)))
     end
   end
@@ -68,9 +65,8 @@ class Scene_Map
   def update
     @screen_x = [[@player.x - 320, 0].max, @mapa.width * 32 - 640].min
     @screen_y = [[@player.y - 240, 0].max, @mapa.height * 32 - 480].min
-    @npcs.each { |npc| if @player.y > npc.y then npc.z = 2 else npc.z = 4 end }
+    @npcs.each { |npc| if @player.y > npc.y then npc.z = 2 else npc.z = 4 end; npc.update }
     @player.update
-    @npcs.each { |npc|npc.update }
     @mapa.update
   end
   

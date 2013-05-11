@@ -1,45 +1,49 @@
 include Gosu
 
 class GameWindow < Window
-  attr_reader :screen_x
-  attr_reader :screen_y
-  attr_reader :character
-  attr_accessor :scene
-  attr_accessor :pause
-  attr_accessor :audio
-  attr_accessor :message
-  attr_accessor :timers
+  attr_reader :screen_x, :screen_y, :character
+  attr_accessor :scene, :pause, :audio, :message, :timers
 
   def initialize
     super(640, 480, false)
     self.caption = "Projekt"
-    @character = Character.new("Jack", 1)
+
+    @character = Character.new("Jack", 1, 50, 50, 0)
     @audio = Audio.new(self)
-    @scene = Scene_Intro.new(self)
     @fps = FPSCounter.new(self)
-    @pause = false
     @font = Font.new(self, $config['font_name'], 25)
     @message = Message.new(self)
     @timers = Array.new
+    @scene = Scene_Intro.new(self)
+
+    @pause = false
   end
   
-  def needs_cursor?; true; end
+  def needs_cursor?
+    true
+  end
+
+  def check_timers
+    @timers.each { |t| t.update }
+    @timers.delete_if { |t| t.finished? }
+  end
 
   def update
-    if @pause == false
+    if not @pause
       @scene.update
       @fps.update
     end
-    @timers.each { |t| t.update }
-    @timers.delete_if { |t| t.finished? }
+    check_timers
   end
   
   def draw
     @scene.draw
     @fps.draw if @fps.show_fps?
-    if @pause == true and not @message.show?
+    
+    if @pause and not @message.show?
       @font.draw("PAUSE", 220, 220, 20)
     end
+
     if @message.show?
       @message.show_message
     end

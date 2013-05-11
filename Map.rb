@@ -1,12 +1,6 @@
-
-include Gosu
-
 class Map
-  attr_reader :width
-  attr_reader :height
-  attr_reader :npcs
-  attr_reader :filename
-  attr_reader :tileset_filename
+  attr_reader :width, :height, :npcs, :filename, :tileset_filename
+
   def initialize(window, filename, tileset)
     @window = window
     @filename = filename

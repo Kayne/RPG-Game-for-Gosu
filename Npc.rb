@@ -1,10 +1,7 @@
 class Npc
-  attr_accessor :x
-  attr_accessor :y
-  attr_accessor :z
-  attr_accessor :direccion
-  attr_reader :solid
-  attr_reader :message
+  attr_accessor :x, :y, :z, :direccion
+  attr_reader :solid, :message
+
   def initialize(window, x, y, filename, movement=:static, face=:down, solid=true, width=32, height=48, speed=2, sound=nil, route='', commands='')
     @window = window
     @x = (x*32)
@@ -20,14 +17,13 @@ class Npc
     @commands = commands
     @speed = speed
     @step = 15
-    #@music = (sound.nil? or sound == '') ? nil : Sample.new("./media/sounds/"+sound)
     @musicInstance = nil
     @sound = sound
     @message = "Tekst ;)"
   end
 
   def play_sound_if_any
-    if @sound != '' and not @sound.nil?
+    if not @sound.empty? and not @sound.nil?
       if (@musicInstance.nil? or not @musicInstance.playing?)
         @musicInstance = @window.audio.play_sound_effect(@sound)
       end
@@ -53,7 +49,7 @@ class Npc
           @x += 1 if not @window.scene.solid_event_infront?(self)
         end
     end
-    @step+=1
+    @step += 1
     return [@x, @y]
   end
   
@@ -128,7 +124,7 @@ class Npc
         @pose = @poses[3]
       end
     end
-    @pose.draw(@x - @window.scene.screen_x,@y - @window.scene.screen_y, @z)
+    @pose.draw(@x - @window.scene.screen_x, @y - @window.scene.screen_y, @z)
   end
   
   def update
@@ -138,46 +134,46 @@ class Npc
       face
       @step = 0
     end
-      if @direccion == :left and not @window.scene.mapa.solid(@x_pies-16, @y_pies) and @x > 0 - @window.scene.screen_x and not @window.scene.solid_event_infront?(self)
-        walk
-      elsif @direccion == :left and @window.scene.mapa.solid(@x_pies-16, @y_pies)  or @window.scene.solid_event_infront?(self)
-        face
-      elsif @direccion == :left and @x <= 0 - @window.scene.screen_x
-        face
-      end
-      if @direccion == :right and not @window.scene.mapa.solid(@x_pies+16, @y_pies) and @x < (@window.scene.mapa.width * 32) - @pose.width and not @window.scene.solid_event_infront?(self)
-        walk
-      elsif @direccion == :right and @window.scene.mapa.solid(@x_pies+16, @y_pies)   or @window.scene.solid_event_infront?(self)
-        face
-      elsif @direccion == :right  and @x >= (@window.scene.mapa.width * 32) - @pose.width
-        face
-      end
-      if @direccion == :up and not @window.scene.mapa.solid(@x_pies, @y_pies-16) and @y > 0 - @window.scene.screen_y and not @window.scene.solid_event_infront?(self)
-        walk
-      elsif @direccion == :up and @window.scene.mapa.solid(@x_pies, @y_pies-16)  or @window.scene.solid_event_infront?(self)
-        face
-      elsif @direccion == :up and @y <= 0 - @window.scene.screen_y
-        face
-      end
-      if @direccion == :down and not @window.scene.mapa.solid(@x_pies, @y_pies+6) and @y < (@window.scene.mapa.height * 32) - @pose.height and not @window.scene.solid_event_infront?(self)
-        walk
-      elsif @direccion == :down and @window.scene.mapa.solid(@x_pies, @y_pies+6)  or @window.scene.solid_event_infront?(self)
-        face
-      elsif @direccion == :down and @y >= (@window.scene.mapa.height * 32) - @pose.height
-        face
-      end
-      case @direccion
-        when :left
-          @pose = @poses[4]
-        when :right
-          @pose = @poses[8]
-        when :up
-          @pose = @poses[12]
-        when :down
-          @pose = @poses[0]
-      end
-      if @x > @window.scene.screen_x - 32 and @x < @window.scene.screen_x + 640 and @y > @window.scene.screen_y - 32 and @y < @window.scene.screen_y + 480
-        self.draw
-      end
+    if @direccion == :left and not @window.scene.mapa.solid(@x_pies-16, @y_pies) and @x > 0 - @window.scene.screen_x and not @window.scene.solid_event_infront?(self)
+      walk
+    elsif @direccion == :left and @window.scene.mapa.solid(@x_pies-16, @y_pies)  or @window.scene.solid_event_infront?(self)
+      face
+    elsif @direccion == :left and @x <= 0 - @window.scene.screen_x
+      face
+    end
+    if @direccion == :right and not @window.scene.mapa.solid(@x_pies+16, @y_pies) and @x < (@window.scene.mapa.width * 32) - @pose.width and not @window.scene.solid_event_infront?(self)
+      walk
+    elsif @direccion == :right and @window.scene.mapa.solid(@x_pies+16, @y_pies)   or @window.scene.solid_event_infront?(self)
+      face
+    elsif @direccion == :right  and @x >= (@window.scene.mapa.width * 32) - @pose.width
+      face
+    end
+    if @direccion == :up and not @window.scene.mapa.solid(@x_pies, @y_pies-16) and @y > 0 - @window.scene.screen_y and not @window.scene.solid_event_infront?(self)
+      walk
+    elsif @direccion == :up and @window.scene.mapa.solid(@x_pies, @y_pies-16)  or @window.scene.solid_event_infront?(self)
+      face
+    elsif @direccion == :up and @y <= 0 - @window.scene.screen_y
+      face
+    end
+    if @direccion == :down and not @window.scene.mapa.solid(@x_pies, @y_pies+6) and @y < (@window.scene.mapa.height * 32) - @pose.height and not @window.scene.solid_event_infront?(self)
+      walk
+    elsif @direccion == :down and @window.scene.mapa.solid(@x_pies, @y_pies+6)  or @window.scene.solid_event_infront?(self)
+      face
+    elsif @direccion == :down and @y >= (@window.scene.mapa.height * 32) - @pose.height
+      face
+    end
+    case @direccion
+      when :left
+        @pose = @poses[4]
+      when :right
+        @pose = @poses[8]
+      when :up
+        @pose = @poses[12]
+      when :down
+        @pose = @poses[0]
+    end
+    if @x > @window.scene.screen_x - 32 and @x < @window.scene.screen_x + 640 and @y > @window.scene.screen_y - 32 and @y < @window.scene.screen_y + 480
+      self.draw
+    end
   end
 end

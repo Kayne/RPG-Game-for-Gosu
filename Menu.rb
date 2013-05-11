@@ -1,6 +1,7 @@
 class Menu
 	class MenuItem
 		HOVER_OFFSET = 3
+
 		def initialize (window, image, x, y, z, callback, hover_image = nil)
 			@window = window
 			@main_image = image
@@ -17,8 +18,8 @@ class Menu
 		end
 
 		def update
-			if is_mouse_hovering then
-				if !@hover_image.nil? then
+			if is_mouse_hovering
+				if not @hover_image.nil?
 					@active_image = @hover_image
 				end
 
@@ -39,7 +40,7 @@ class Menu
 		end
 
 		def clicked
-			if is_mouse_hovering then
+			if is_mouse_hovering
 				@callback.call
 			end
 		end

@@ -1,16 +1,13 @@
-
 class Window_Extras
-	attr_accessor :x
-	attr_accessor :y
-	attr_accessor :z
-	attr_accessor :active
+	attr_accessor :x, :y, :z, :active
+
 	def initialize(window, x, y, width, height, z = 10)
 		@window = window
-		if x != 0 then @x = x else @x = 0 end
 		@z = z
-		if y != 0 then @y = y else @y = 0 end
-		if width != 0 then @width = width else @width = 0 end
-		if height != 0 then @height = height else @height = 0 end
+		@x = (x != 0) ? x : 0
+		@y = (y != 0) ? y : 0
+		@width = (width != 0) ? width : 0
+		@height = (height != 0) ? height : 0
 		@active = false
 	end
 	

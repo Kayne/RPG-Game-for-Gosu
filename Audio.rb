@@ -6,8 +6,8 @@ class Audio
 
   def initialize(window)
     @window = window
-    @bgm = {}
-    @se = {}
+    @bgm = Hash.new
+    @se = Hash.new
   end
 
   def preload_music(file)

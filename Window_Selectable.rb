@@ -1,4 +1,3 @@
-
 class Window_Selectable < Window_Extras
 	attr_accessor :index
 	
