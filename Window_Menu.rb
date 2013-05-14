@@ -35,10 +35,6 @@ class Window_Menu < Window_Selectable
 		super
 		self.draw_commands
 		self.draw_index if @active
-		@font.draw("HP", @window.width-140, 0, 20)
-		self.drawHPBar(@window.width-100, 0, 100, 20, @green_light, @green_dark, 10, 100)
-		@font.draw("EXP", @window.width-140, 25, 20)
-		self.drawEXPBar(@window.width-100, 25, 100, 20, @blue_light, @blue_dark, 10, 100)
 	end
 	
 end

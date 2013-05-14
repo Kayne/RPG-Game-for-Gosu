@@ -2,7 +2,7 @@ include Gosu
 
 class GameWindow < Window
   attr_reader :screen_x, :screen_y, :character
-  attr_accessor :scene, :pause, :audio, :message, :timers
+  attr_accessor :scene, :pause, :audio, :message, :timers, :font
 
   def initialize
     super(640, 480, false)
@@ -11,7 +11,7 @@ class GameWindow < Window
     @character = Character.new("Jack", 1, 50, 50, 0)
     @audio = Audio.new(self)
     @fps = FPSCounter.new(self)
-    @font = Font.new(self, $config['font_name'], 25)
+    @font = Font.new(self, $config['font_name'], $config['font_size'])
     @message = Message.new(self)
     @timers = Array.new
     @scene = Scene_Intro.new(self)
