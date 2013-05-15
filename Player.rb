@@ -145,4 +145,19 @@ class Player
       end
     end
   end
+
+  def save_to_file(filename)
+    serialized_object = Marshal::dump(self)
+    File.open($config['save_dir'] + '/' + filename, "w") do |f|
+      f.puts serialized_object
+    end
+  end
+
+  def load_from_file(filename)
+    object = nil
+    File.open($config['save_dir'] + '/' + filename, "r").each do |object|
+      object = YAML::load(object)
+    end
+    return object
+  end
 end

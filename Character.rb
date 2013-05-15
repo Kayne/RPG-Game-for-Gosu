@@ -33,4 +33,19 @@ class Character
     @exp += exp
   end
 
+
+  def save_to_file(filename)
+    File.open($config['save_dir'] + '/' + filename, "w") do |file|
+      Marshal::dump(self, file)
+    end
+  end
+
+  def load_from_file(filename)
+    object = nil
+    File.open($config['save_dir'] + '/' + filename, "r").each do |object|
+      object = Marshal::load(object)
+    end
+    return object
+  end
+
 end
