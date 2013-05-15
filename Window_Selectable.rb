@@ -1,11 +1,11 @@
 class Window_Selectable < Window_Extras
 	attr_accessor :index
 	
-	def initialize(window,width, height, space, index=0)
+	def initialize(window,width, height, space, index=0, x=0, y=0)
 		super(window, 0, 0, width, 0)
 		@index = index
-		@x = 0
-		@y = 0
+		@x = x
+		@y = y
 		@z = 10
 		@width = width
 		@height = height

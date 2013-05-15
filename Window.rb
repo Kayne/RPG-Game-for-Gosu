@@ -50,7 +50,7 @@ class GameWindow < Window
   end
 
   def button_down(id)
-    if @scene.kind_of?(Scene_Character)
+    if @scene.kind_of?(Scene_Character) or @scene.kind_of?(Scene_Menu)
       @scene.window_menu.button_down(id)
     end
 
@@ -74,10 +74,6 @@ class GameWindow < Window
       end
     end
 
-    if id == MsLeft and @scene.kind_of?(Scene_Menu)
-      @audio.play_sound_effect("accept.ogg")
-      @scene.menu.clicked
-    end
     if id == KbP
       @pause = (@pause == true) ? false : true
     end
