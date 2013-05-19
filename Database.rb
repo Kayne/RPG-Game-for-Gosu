@@ -47,17 +47,20 @@
 
       sound = npc_load[10]
       sound.gsub!('sound:', '') 
+
+      message = npc_load[11]
+      message.gsub!('message:', '')
       
-      route = npc_load[11] 
+      route = npc_load[12] 
       route.gsub!('route:', '')
       
       commands = []
       for i in 0...npc_load.size
-        next if (0...8).include?(i)
+        next if (0...13).include?(i)
         commands.push(npc_load[i]) 
       end
       commands.to_s.gsub!('commands:', '')
-      return x.to_i,y.to_i,filename,movement,face,solid,width,height,speed,sound,route,commands
+      return x.to_i,y.to_i,filename,movement,face,solid,width,height,speed,sound,message,route,commands
     end
     
   end

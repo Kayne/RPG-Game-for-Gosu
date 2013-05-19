@@ -9,5 +9,6 @@ width:111
 height:62
 speed:1
 sound:kotek.wav
+message:Miauuu!
 route:
 commands:

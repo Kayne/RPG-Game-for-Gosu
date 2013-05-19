@@ -9,5 +9,6 @@ width:32
 height:48
 speed:2
 sound:
+message:Jestem zajęty.
 route:
 commands:

@@ -2,7 +2,7 @@ class Npc
   attr_accessor :x, :y, :z, :direccion
   attr_reader :solid, :message
 
-  def initialize(window, x, y, filename, movement=:static, face=:down, solid=true, width=32, height=48, speed=2, sound=nil, route='', commands='')
+  def initialize(window, x, y, filename, movement=:static, face=:down, solid=true, width=32, height=48, speed=2, sound=nil, message='', route='', commands='')
     @window = window
     @x = (x*32)
     @y = (y*32)-24
@@ -19,7 +19,8 @@ class Npc
     @step = 15
     @musicInstance = nil
     @sound = sound
-    @message = "Tekst ;)"
+    @message = message
+    puts commands.inspect
   end
 
   def play_sound_if_any
