@@ -54,12 +54,19 @@
       route = npc_load[12] 
       route.gsub!('route:', '')
       
-      commands = []
+      comm = []
       for i in 0...npc_load.size
         next if (0...13).include?(i)
-        commands.push(npc_load[i]) 
+        comm.push(npc_load[i]) 
       end
-      commands.to_s.gsub!('commands:', '')
+      comm.to_s.gsub!('commands:', '')
+      comm.shift
+      commands = Hash.new
+      comm.each do |str|
+        arr = str.split(';;;')
+        commands[arr[0]] = eval("lambda { #{arr[1]} }")
+      end
+      
       return x.to_i,y.to_i,filename,movement,face,solid,width,height,speed,sound,message,route,commands
     end
     

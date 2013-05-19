@@ -6,6 +6,7 @@ class Player
   attr_accessor :z
   attr_accessor :direccion
   attr_reader :start_x, :start_y
+  attr_accessor :window_menu
   def initialize(window, x, y)
     @window = window
     @font = Font.new(@window, $config['font_name'], $config['font_size'])
@@ -18,6 +19,8 @@ class Player
     @pose = @poses[0]
     @direccion = $config['player_direccion']
     @speed = 3
+
+    @window_menu = nil
   end
 
   def get_actual_position
@@ -89,12 +92,17 @@ class Player
         end
     end
     @pose.draw(@x - @window.scene.screen_x,@y - @window.scene.screen_y, @z)
-
+    
+    @window_menu.draw if not @window_menu.nil?
   end
 
   def update
 
-    meet_npc
+    if @window_menu.nil?
+      meet_npc
+    else @window_menu.nil?
+      @window_menu.update
+    end
 
     @x_pies = @x + (@pose.width/2)
     @y_pies = @y + @pose.height
@@ -134,14 +142,21 @@ class Player
   end
 
   def meet_npc
-    if @window.button_down?(Button::KbReturn) and @window.scene.solid_event_infront?(self)
+    if @window.button_down?(Button::KbA) and @window.scene.solid_event_infront?(self)
       @window.pause = true
       npc = @window.scene.get_solid_event_infront(self)
+      
       if not npc.nil?
+
+        if npc.commands?
+          @window_menu = Window_Menu.new(@window, 160, npc.commands, 0, @window.width/2-80, @window.height/2)
+          @window_menu.active = true
+        end
+      
         npc.play_sound_if_any
         @window.message.message = npc.message
         @window.message.show = true
-        @window.timers << Timer.new(2, lambda {@window.message.hide_message; @window.pause = false})
+        @window.timers << Timer.new((npc.commands?) ? 5 : 2, lambda {@window.message.hide_message; @window.scene.player.window_menu = nil; @window.pause = false})
       end
     end
   end

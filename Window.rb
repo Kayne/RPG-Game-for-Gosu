@@ -33,6 +33,9 @@ class GameWindow < Window
       @scene.update
       @fps.update
     end
+    if @pause and not @scene.player.window_menu.nil?
+      @scene.player.window_menu.update
+    end
     check_timers
   end
   
@@ -47,6 +50,7 @@ class GameWindow < Window
     if @message.show?
       @message.show_message
     end
+
   end
 
   def button_down(id)
@@ -54,7 +58,11 @@ class GameWindow < Window
       @scene.window_menu.button_down(id)
     end
 
-    if @message.show? and id == KbReturn
+    if @scene.kind_of?(Scene_Map) and not @scene.player.window_menu.nil?
+        @scene.player.window_menu.button_down(id)
+    end
+
+    if @message.show? and id == KbA and @scene.player.window_menu.nil?
       @message.hide_message
       @pause = false
     end
