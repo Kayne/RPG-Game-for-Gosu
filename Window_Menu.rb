@@ -11,9 +11,13 @@ class Window_Menu < Window_Selectable
 		spacing = 32
 		for i in 0...@options.size
 			position = spacing * i+1
-			adjust = @font.text_width(@options[i], 1)
-			@font.draw(@options[i], @x+((@width/2)-(adjust/2)), @y+8 + position, @z+1)
+			adjust = @font.text_width(@options.keys[i], 1)
+			@font.draw(@options.keys[i], @x+((@width/2)-(adjust/2)), @y+8 + position, @z+1)
 		end
+	end
+
+	def call(id)
+		@options[@options.keys[id]].call
 	end
 	
 	def button_down(id)

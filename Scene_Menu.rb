@@ -14,7 +14,13 @@ class Scene_Menu
     @fade_time = 255
     @color = Color.new(@fade_time, 0, 0 ,0)
 
-    @window_menu = Window_Menu.new(@window, 160, ["New game", "Save", "Load", "Exit"], 0, @window.width/2-80, @window.height/2)
+    @window_menu = Window_Menu.new(@window, 160, 
+      {
+      "New game" => lambda { @window.scene = Transition.new(@window, Scene_Map.new(@window, $config['map'], $config['map_graphic']), :in, false) } ,
+      "Save" => lambda { @window.character.save_to_file(Time.new.strftime("%Y-%m-%d_%H-%M")) },
+      "Load" => lambda { nil },
+      "Exit" => lambda { @window.close }}, 
+      0, @window.width/2-80, @window.height/2)
     @window_menu.active = true
   end
   
@@ -40,15 +46,7 @@ class Scene_Menu
     @window_menu.update
 
     if @window.button_down?(Button::KbReturn)
-      case @window_menu.index
-        when 0
-          @window.scene = Transition.new(@window, Scene_Map.new(@window, $config['map'], $config['map_graphic']), :in, false)
-        when 1
-          @window.character.save_to_file(Time.new.strftime("%Y-%m-%d_%H-%M"))
-        when 2
-        when 3
-          @window.close
-      end
+      @window_menu.call(@window_menu.index)
     end
   end
 

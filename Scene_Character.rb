@@ -3,7 +3,12 @@ class Scene_Character
 
   def initialize(window)
     @window = window
-    @window_menu = Window_Menu.new(@window, 160, ["Use", "Drop", "Back"], 0)
+    @window_menu = Window_Menu.new(@window, 160,
+      {
+        "Use" => lambda { nil }, 
+        "Drop" => lambda { nil },
+        "Back" => lambda { @window.scene = Transition.new(@window, Scene_Map.new(@window, $config['map'], $config['map_graphic']), :in, false) }
+        }, 0)
     @window_menu.active = true
   end
   
@@ -12,15 +17,7 @@ class Scene_Character
     @window_menu.update
 
     if @window.button_down?(Button::KbReturn)
-      case @window_menu.index
-        when 0
-          # Use
-        when 1 
-          # Drop
-        when 2
-          # Return
-          @window.scene = Transition.new(@window, Scene_Map.new(@window, $config['map'], $config['map_graphic']), :in, false)
-      end
+      @window_menu.call(@window_menu.index)
     end
   end
   
