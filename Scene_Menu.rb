@@ -44,10 +44,6 @@ class Scene_Menu
     end
 
     @window_menu.update
-
-    if @window.button_down?(Button::KbReturn)
-      @window_menu.call(@window_menu.index)
-    end
   end
 
   def draw
