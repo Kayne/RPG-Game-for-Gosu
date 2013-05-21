@@ -7,8 +7,8 @@ class Scene_Menu
     #@font = Font.new(window, "Verdana", 18)
     @window = window
     @background = Image.new(window, "./media/back.png", true)
+    @config = Settings.instance
     
-
     @time = 0
     @fading = :in
     @fade_time = 255
@@ -16,7 +16,7 @@ class Scene_Menu
 
     @window_menu = Window_Menu.new(@window, 160, 
       {
-      "New game" => lambda { @window.scene = Transition.new(@window, Scene_Map.new(@window, $config['map'], $config['map_graphic']), :in, false) } ,
+      "New game" => lambda { @window.scene = Transition.new(@window, Scene_Map.new(@window, @config['map'], @config['map_graphic']), :in, false) } ,
       "Save" => lambda { @window.character.save_to_file(Time.new.strftime("%Y-%m-%d_%H-%M")) },
       "Load" => lambda { nil },
       "Exit" => lambda { @window.close }}, 
@@ -37,7 +37,7 @@ class Scene_Menu
       end
     when :out
       if @fade_time >= 255
-        @window.scene = Transition.new(@window, Scene_Map.new(@window, $config['map'], $config['map_graphic']), :in, false)
+        @window.scene = Transition.new(@window, Scene_Map.new(@window, @config['map'], @config['map_graphic']), :in, false)
       else
         @fade_time += 15 # 15 is cool
       end

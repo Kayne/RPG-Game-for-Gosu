@@ -3,9 +3,10 @@ class Scene_Map
 
   def initialize(window, map, tileset)
     @window = window
+    @config = Settings.instance
     @screen_x, @screen_y = 0, 0
     @mapa = Map.new(@window, map, tileset)
-    @player = Player.new(@window, $config['player_x'], $config['player_y'])
+    @player = Player.new(@window, @config['player_x'], @config['player_y'])
     @npcs = Array.new
     @mapa.npcs.each do |npc|
       @npcs.push(Npc.new(@window, *Database.load_npcs(npc)))

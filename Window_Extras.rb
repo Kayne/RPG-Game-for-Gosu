@@ -2,6 +2,7 @@ class Window_Extras
 	attr_accessor :x, :y, :z, :active
 
 	def initialize(window, x, y, width, height, z = 10)
+		@config = Settings.instance
 		@window = window
 		@z = z
 		@x = (x != 0) ? x : 0

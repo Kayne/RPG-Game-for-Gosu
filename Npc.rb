@@ -4,6 +4,7 @@ class Npc
 
   def initialize(window, x, y, filename, movement=:static, face=:down, solid=true, width=32, height=48, speed=2, sound=nil, message='', route='', commands={})
     @window = window
+    @config = Settings.instance
     @x = (x*32)
     @y = (y*32)-24
     @z = 2

@@ -6,7 +6,8 @@ class Message
 
   def initialize(window)
     @window = window
-    @font = Font.new(@window, $config['font_name'], $config['font_size'])
+    @config = Settings.instance
+    @font = Font.new(@window, @config['font_name'], @config['font_size'])
 
     @show = false
     @message = nil

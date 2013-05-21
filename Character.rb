@@ -3,6 +3,7 @@ class Character
 
   def initialize(name, level, hp, max_hp, exp)
     @name, @level, @hp, @max_hp, @exp = name, level, hp, max_hp, exp
+    @config = Settings.instance
   end
 
   def next_level?
@@ -35,14 +36,14 @@ class Character
 
 
   def save_to_file(filename)
-    File.open($config['save_dir'] + '/' + filename, "w") do |file|
+    File.open(@config['save_dir'] + '/' + filename, "w") do |file|
       Marshal::dump(self, file)
     end
   end
 
   def load_from_file(filename)
     object = nil
-    File.open($config['save_dir'] + '/' + filename, "r").each do |object|
+    File.open(@config['save_dir'] + '/' + filename, "r").each do |object|
       object = Marshal::load(object)
     end
     return object

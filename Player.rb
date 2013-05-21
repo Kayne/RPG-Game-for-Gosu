@@ -9,15 +9,16 @@ class Player
   attr_accessor :window_menu
   def initialize(window, x, y)
     @window = window
-    @font = Font.new(@window, $config['font_name'], $config['font_size'])
+    @config = Settings.instance
+    @font = Font.new(@window, @config['font_name'], @config['font_size'])
 
     @x = ((x-1)*32)
     @y = ((y-1)*32)-24
     @z = 3
 
-    @poses = Gosu::Image.load_tiles(@window, $config['character_graphic'], 32, 48, false)
+    @poses = Gosu::Image.load_tiles(@window, @config['character_graphic'], 32, 48, false)
     @pose = @poses[0]
-    @direccion = $config['player_direccion']
+    @direccion = @config['player_direccion']
     @speed = 3
 
     @window_menu = nil
@@ -163,14 +164,14 @@ class Player
 
   def save_to_file(filename)
     serialized_object = Marshal::dump(self)
-    File.open($config['save_dir'] + '/' + filename, "w") do |f|
+    File.open(@config['save_dir'] + '/' + filename, "w") do |f|
       f.puts serialized_object
     end
   end
 
   def load_from_file(filename)
     object = nil
-    File.open($config['save_dir'] + '/' + filename, "r").each do |object|
+    File.open(@config['save_dir'] + '/' + filename, "r").each do |object|
       object = YAML::load(object)
     end
     return object

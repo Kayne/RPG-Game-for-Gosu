@@ -8,13 +8,15 @@ class GameWindow < Window
     super(640, 480, false)
     self.caption = "Projekt"
 
+    @config = Settings.instance
     @character = Character.new("Jack", 1, 50, 50, 0)
     @audio = Audio.new(self)
     @fps = FPSCounter.new(self)
-    @font = Font.new(self, $config['font_name'], $config['font_size'])
+    @font = Font.new(self, @config['font_name'], @config['font_size'])
     @message = Message.new(self)
     @timers = Array.new
     @scene = Scene_Intro.new(self)
+    
 
     @pause = false
   end
@@ -70,12 +72,12 @@ class GameWindow < Window
     if id == KbEscape
       @pause = false
       if @scene.kind_of?(Scene_Map)
-        $config['player_x'], $config['player_y'] =  @scene.player.get_actual_position
-        $config['player_direccion'] = @scene.player.direccion
+        @config['player_x'], @config['player_y'] =  @scene.player.get_actual_position
+        @config['player_direccion'] = @scene.player.direccion
         @scene = Transition.new(self, Scene_Menu.new(self), :in, false)
 
       elsif @scene.kind_of?(Scene_Character)
-          @scene = Transition.new(self, Scene_Map.new(self, $config['map'], $config['map_graphic']), :in, false)
+          @scene = Transition.new(self, Scene_Map.new(self, @config['map'], @config['map_graphic']), :in, false)
 
       else
         close
@@ -90,10 +92,10 @@ class GameWindow < Window
     end
     if id == KbC
       if @scene.kind_of?(Scene_Character)
-        @scene = Transition.new(self, Scene_Map.new(self, $config['map'], $config['map_graphic']), :in, false)
+        @scene = Transition.new(self, Scene_Map.new(self, @config['map'], @config['map_graphic']), :in, false)
       else
-        $config['player_x'], $config['player_y'] =  @scene.player.get_actual_position
-        $config['player_direccion'] = @scene.player.direccion
+        @config['player_x'], @config['player_y'] =  @scene.player.get_actual_position
+        @config['player_direccion'] = @scene.player.direccion
         @scene = Transition.new(self, Scene_Character.new(self), :in, false)
       end
     end

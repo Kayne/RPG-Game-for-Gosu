@@ -3,11 +3,12 @@ class Scene_Character
 
   def initialize(window)
     @window = window
+    @config = Settings.instance
     @window_menu = Window_Menu.new(@window, 160,
       {
         "Use" => lambda { nil }, 
         "Drop" => lambda { nil },
-        "Back" => lambda { @window.scene = Transition.new(@window, Scene_Map.new(@window, $config['map'], $config['map_graphic']), :in, false) }
+        "Back" => lambda { @window.scene = Transition.new(@window, Scene_Map.new(@window, @config['map'], @config['map_graphic']), :in, false) }
         }, 0)
     @window_menu.active = true
   end

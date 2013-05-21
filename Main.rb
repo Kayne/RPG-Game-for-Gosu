@@ -1,5 +1,5 @@
 require 'gosu'
-require './Config.rb'
+require './Settings.rb'
 require './Window.rb'
 require './Player.rb'
 require './Tileset.rb'
