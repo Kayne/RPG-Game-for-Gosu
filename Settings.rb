@@ -6,16 +6,13 @@ class Settings
 
   def initialize
     @config = Hash.new
-    @config["character_graphic"] = "media/charasets/hero.png"
-    @config["map"] = "./media/maps/Test Map.txt"
-    @config["map_graphic"] = "./media/tileset.png"
-    @config['save_dir'] = './saves'
-    @config['font_size'] = 18
-    @config['font_name'] = "Verdana"
-    @config['player_x'] = 7
-    @config['player_y'] = 3
-    @config['player_direccion'] = :down
-    @config['audio_path'] = 'media/audio/'
+
+    configs = File.readlines("./database/settings.txt").map { |line| line.chomp }
+    0.upto(configs.size-1) do |i|
+        temp = configs[i].split(';')
+        @config[temp[0]] = eval(temp[1])
+      end
+    
   end
 
   def [](key)

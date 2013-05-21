@@ -1,0 +1,10 @@
+character_graphic;"media/charasets/hero.png"
+map;"./media/maps/Test Map.txt"
+map_graphic;"./media/tileset.png"
+save_dir;'./saves'
+font_size;18
+font_name;"Verdana"
+player_x;7
+player_y;3
+player_direccion;:down
+audio_path;'media/audio/'
