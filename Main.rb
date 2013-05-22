@@ -1,4 +1,8 @@
+# Load Gosu
 require 'gosu'
+include Gosu
+
+# Load game
 require './Settings.rb'
 require './Scene.rb'
 require './Window.rb'

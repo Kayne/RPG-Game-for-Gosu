@@ -1,5 +1,3 @@
-include Gosu
-
 class GameWindow < Window
   attr_reader :screen_x, :screen_y, :character
   attr_accessor :scene, :pause, :audio, :message, :timers, :font

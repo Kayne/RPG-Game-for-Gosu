@@ -1,5 +1,3 @@
-include Gosu
-
 class Scene_Intro < Scene
   def initialize(window)
     super(window)

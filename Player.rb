@@ -1,5 +1,3 @@
-include Gosu
-
 class Player
   attr_accessor :x
   attr_accessor :y

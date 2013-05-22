@@ -1,5 +1,3 @@
-include Gosu
-
 class Scene_Menu < Scene
   attr_accessor :window_menu
 
