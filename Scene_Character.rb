@@ -1,9 +1,8 @@
-class Scene_Character
+class Scene_Character < Scene
   attr_accessor :window_menu
 
   def initialize(window)
-    @window = window
-    @config = Settings.instance
+    super(window)
     @window_menu = Window_Menu.new(@window, 160,
       {
         "Use" => lambda { nil }, 

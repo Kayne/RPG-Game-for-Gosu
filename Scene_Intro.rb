@@ -1,9 +1,8 @@
 include Gosu
 
-class Scene_Intro
+class Scene_Intro < Scene
   def initialize(window)
-    @window = window
-    @config = Settings.instance
+    super(window)
     @background = Image.new(window, "./media/background.png", true)
     @time = 0
     @fading = :in

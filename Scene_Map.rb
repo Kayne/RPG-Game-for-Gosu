@@ -1,9 +1,8 @@
-class Scene_Map
+class Scene_Map < Scene
   attr_reader :mapa, :player, :screen_x, :screen_y
 
   def initialize(window, map, tileset)
-    @window = window
-    @config = Settings.instance
+    super(window)
     @screen_x, @screen_y = 0, 0
     @mapa = Map.new(@window, map, tileset)
     @player = Player.new(@window, @config['player_x'], @config['player_y'])

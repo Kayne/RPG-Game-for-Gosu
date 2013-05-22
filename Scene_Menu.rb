@@ -1,11 +1,10 @@
 include Gosu
 
-class Scene_Menu
+class Scene_Menu < Scene
   attr_accessor :window_menu
 
   def initialize(window)
-    #@font = Font.new(window, "Verdana", 18)
-    @window = window
+    super(window)
     @background = Image.new(window, "./media/back.png", true)
     @config = Settings.instance
     
