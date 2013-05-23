@@ -7,7 +7,10 @@ class GameWindow < Window
     self.caption = "Projekt"
 
     @config = Settings.instance
+    Database.load_items
     @character = Character.new("Jack", 1, 50, 50, 0)
+    @character.add_item($data_items[0])
+    @character.use_item(0)
     @audio = Audio.new(self)
     @fps = FPSCounter.new(self)
     @font = Font.new(self, @config['font_name'], @config['font_size'])
