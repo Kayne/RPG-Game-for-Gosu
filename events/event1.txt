@@ -9,6 +9,7 @@ width:32
 height:48
 speed:2
 sound:
-message:Siemka, co tam?
+message:Siemka, co tam? Rozdaję mikstury życia. Chcesz?
 route:
 commands:
+"Weź miksturę";;;puts self;@window.character.add_item($data_items[0])

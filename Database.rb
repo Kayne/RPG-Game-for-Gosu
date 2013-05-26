@@ -64,7 +64,7 @@
       commands = Hash.new
       comm.each do |str|
         arr = str.split(';;;')
-        commands[arr[0]] = eval("lambda { #{arr[1]} }")
+        commands[arr[0]] = arr[1]
       end
       
       return x.to_i,y.to_i,filename,movement,face,solid,width,height,speed,sound,message,route,commands
