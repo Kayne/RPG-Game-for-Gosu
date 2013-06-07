@@ -7,6 +7,7 @@ class GameWindow < Window
     self.caption = "Projekt"
 
     @config = Settings.instance
+    Database.load_items
     @character = Character.new("Jack", 1, 50, 50, 0)
     @audio = Audio.instance
     @audio.set_window(self)

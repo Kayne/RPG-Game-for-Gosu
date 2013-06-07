@@ -6,6 +6,14 @@ class Window_Menu < Window_Selectable
 		@options = options
 		@font = Font.new(window, @config['font_name'], @config['font_size'])
 	end
+
+	def delete(id)
+		@options.delete(@options.keys[id])
+	end
+
+	def active?
+		@active
+	end
 	
 	def draw_commands
 		spacing = 32
@@ -21,28 +29,39 @@ class Window_Menu < Window_Selectable
 	end
 	
 	def button_down(id)
-		if id == KbDown and not @index == @options.size - 1
-			@window.audio.play_sound_effect("accept.ogg")
-			@index += 1
-		end				
-		if id == KbUp and not @index == 0
-			@window.audio.play_sound_effect("accept.ogg")
-			@index -= 1 
-		end
-		if id == KbReturn
-			@window.audio.play_sound_effect("accept.ogg")
-			call(@index)
+		if active?
+			if id == KbDown and not @index == @options.size - 1
+				@window.audio.play_sound_effect("accept.ogg")
+				@index += 1
+			end				
+			if id == KbUp and not @index == 0
+				@window.audio.play_sound_effect("accept.ogg")
+				@index -= 1 
+			end
+			if id == KbReturn
+				@window.audio.play_sound_effect("accept.ogg")
+				if @window.scene.kind_of?(Scene_Character)
+					@window.character.use_item(@options[@options.keys[@index]])
+				else
+					call(@index)
+				end
+			end
 		end
 	end
 	
 	def update
 		super
+		if @options.empty?
+			@active = false
+		end
 	end
 	
 	def draw
 		super
-		self.draw_commands
-		self.draw_index if @active
+		if active?
+			self.draw_commands
+			self.draw_index
+		end
 	end
 	
 end

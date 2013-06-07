@@ -21,6 +21,12 @@ class Npc
     @musicInstance = nil
     @sound = sound
     @message = message
+
+    eval_commands
+  end
+
+  def eval_commands
+    commands.each { |k, v| commands[k] = eval("lambda { #{v} }") }
   end
 
   def commands?

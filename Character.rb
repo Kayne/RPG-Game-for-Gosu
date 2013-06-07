@@ -1,9 +1,10 @@
 class Character
-  attr_reader :name, :level, :max_hp, :hp, :exp
+  attr_reader :name, :level, :max_hp, :hp, :exp, :items
 
   def initialize(name, level, hp, max_hp, exp)
     @name, @level, @hp, @max_hp, @exp = name, level, hp, max_hp, exp
     @config = Settings.instance
+    @items = Array.new
   end
 
   def next_level?
@@ -34,6 +35,15 @@ class Character
     @exp += exp
   end
 
+  def add_item(item)
+    @items << Item.new(self, item)
+  end
+
+  def use_item(item)
+    use = @items.index(item)
+    @items[use].call
+    @items.delete_at(use) if @items[use].usable_once?
+  end
 
   def save_to_file(filename)
     File.open(@config['save_dir'] + '/' + filename, "w") do |file|

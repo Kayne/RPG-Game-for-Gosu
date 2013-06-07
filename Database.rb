@@ -2,10 +2,10 @@
   module Database
   
     def self.load_items
-      $data_items = Array.new(1)
+      $data_items = Array.new
       items = File.readlines("./database/objects.txt").map { |line| line.chomp }
       for i in 0...items.size
-        $data_items.push(items[i].split(';'))
+        $data_items << items[i].split(';')
       end
     end
     
@@ -64,7 +64,7 @@
       commands = Hash.new
       comm.each do |str|
         arr = str.split(';;;')
-        commands[arr[0]] = eval("lambda { #{arr[1]} }")
+        commands[arr[0]] = arr[1]
       end
       
       return x.to_i,y.to_i,filename,movement,face,solid,width,height,speed,sound,message,route,commands
