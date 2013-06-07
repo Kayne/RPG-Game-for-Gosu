@@ -9,6 +9,7 @@ width:32
 height:48
 speed:2
 sound:
-message:Nie mam teraz czasu!
+message:Nie mam teraz czasu! Weź kamienia!
 route:
 commands:
+"Weź kamień";;;@window.character.add_item($data_items[2])
