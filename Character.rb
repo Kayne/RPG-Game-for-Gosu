@@ -40,10 +40,9 @@ class Character
   end
 
   def use_item(item)
-    @items[item].call
-    if @items[item].usable_once?
-      @items.delete_at(item)
-    end
+    use = @items.index(item)
+    @items[use].call
+    @items.delete_at(use) if @items[use].usable_once?
   end
 
   def save_to_file(filename)

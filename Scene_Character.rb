@@ -4,9 +4,8 @@ class Scene_Character < Scene
   def initialize(window)
     super(window)
     @items = Hash.new
-    @items2 = Hash.new
     window.character.items.each do |item|
-      @items[item.name] = lambda { item.call }
+      @items[item.name] = item
     end
     @window_menu = Window_Menu.new(@window, 160, @items, 0)
     if not @items.empty?

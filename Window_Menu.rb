@@ -12,7 +12,7 @@ class Window_Menu < Window_Selectable
 	end
 
 	def active?
-		active
+		@active
 	end
 	
 	def draw_commands
@@ -24,9 +24,8 @@ class Window_Menu < Window_Selectable
 		end
 	end
 
-	def call(id, remove = false)
+	def call(id)
 		@options[@options.keys[id]].call
-		delete(id) if remove
 	end
 	
 	def button_down(id)
@@ -41,7 +40,11 @@ class Window_Menu < Window_Selectable
 			end
 			if id == KbReturn
 				@window.audio.play_sound_effect("accept.ogg")
-				call(@index)
+				if @window.scene.kind_of?(Scene_Character)
+					@window.character.use_item(@options[@options.keys[@index]])
+				else
+					call(@index)
+				end
 			end
 		end
 	end
@@ -49,13 +52,13 @@ class Window_Menu < Window_Selectable
 	def update
 		super
 		if @options.empty?
-			active = false
+			@active = false
 		end
 	end
 	
 	def draw
 		super
-		if @active
+		if active?
 			self.draw_commands
 			self.draw_index
 		end
