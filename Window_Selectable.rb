@@ -44,7 +44,7 @@ class Window_Selectable < Window_Extras
 	end
 	
 	def draw
-		self.drawBox(@x, @y, @width, @height+(@cursor_y_plus*2), @z)
+		self.drawBox(@x, @y, @width, @height+(@cursor_y_plus*2), @z) if @active
 	end
 	
 end
