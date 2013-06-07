@@ -1,14 +1,19 @@
 class Audio
 
+  include Singleton
+
   @config = Settings.instance
   AUDIO_PATH = File.join(File.dirname(__FILE__), @config['audio_path'])
   BGM_PATH   = File.join(AUDIO_PATH, 'music')
   SE_PATH    = File.join(AUDIO_PATH, 'sounds')
 
-  def initialize(window)
-    @window = window
+  def initialize
     @bgm = Hash.new
     @se = Hash.new
+  end
+
+  def set_window(window)
+    @window = window
   end
 
   def preload_music(file)

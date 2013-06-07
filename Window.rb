@@ -8,7 +8,8 @@ class GameWindow < Window
 
     @config = Settings.instance
     @character = Character.new("Jack", 1, 50, 50, 0)
-    @audio = Audio.new(self)
+    @audio = Audio.instance
+    @audio.set_window(self)
     @fps = FPSCounter.new(self)
     @font = Font.new(self, @config['font_name'], @config['font_size'])
     @message = Message.new(self)

@@ -1,5 +1,7 @@
 # Load Gosu
 require 'gosu'
+require 'singleton'
+
 include Gosu
 
 # Load game
