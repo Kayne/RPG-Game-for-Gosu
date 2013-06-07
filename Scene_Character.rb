@@ -16,9 +16,6 @@ class Scene_Character < Scene
   
   def update
     @window_menu.update
-    if @window.button_down?(Button::KbReturn)
-      @window_menu.delete(@window_menu.index)
-    end
   end
   
   def draw
