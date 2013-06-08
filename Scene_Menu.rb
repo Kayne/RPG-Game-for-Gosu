@@ -13,7 +13,7 @@ class Scene_Menu < Scene
 
     @window_menu = Window_Menu.new(@window, 160, 
       {
-      "New game" => lambda { @window.scene = Transition.new(@window, Scene_Map.new(@window, @config['map'], @config['map_graphic']), :in, false) } ,
+      (@config['play'].nil?) ? "New game" : "Continue" => lambda { @fading = :out } ,
       "Save" => lambda { @window.character.save_to_file(Time.new.strftime("%Y-%m-%d_%H-%M")) },
       "Load" => lambda { nil },
       "Exit" => lambda { @window.close }}, 
@@ -30,13 +30,14 @@ class Scene_Menu < Scene
       if @fade_time <= 0
         @fading = :wait
       else
-        @fade_time -= 15 # 15 is cool
+        @fade_time -= 15
       end
     when :out
       if @fade_time >= 255
+        @config['play'] = true
         @window.scene = Transition.new(@window, Scene_Map.new(@window, @config['map'], @config['map_graphic']), :in, false)
       else
-        @fade_time += 15 # 15 is cool
+        @fade_time += 15
       end
     end
 
