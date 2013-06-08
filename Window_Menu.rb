@@ -7,10 +7,6 @@ class Window_Menu < Window_Selectable
 		@font = Font.new(window, @config['font_name'], @config['font_size'])
 	end
 
-	def delete(id)
-		@options.delete(@options.keys[id])
-	end
-
 	def active?
 		@active
 	end
@@ -67,4 +63,9 @@ class Window_Menu < Window_Selectable
 		end
 	end
 	
+	private 
+
+	def delete(id)
+		@options.delete(@options.keys[id])
+	end
 end

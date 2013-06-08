@@ -7,8 +7,7 @@
     attr_reader :fps
     
     def initialize(window)
-      @config = Settings.instance
-      @font = Font.new(window, @config['font_name'], @config['font_size'])
+      @window = window
       @frames_counter = 0
       @milliseconds_before = Gosu::milliseconds
       @show_fps = false
@@ -26,10 +25,10 @@
         @frames_counter = 0
         @milliseconds_before = Gosu::milliseconds
       end
-      @font.draw("FPS: "+@fps.round(2).to_s, 0, 0, 20) if @show_fps
+      @window.font.draw("FPS: "+@fps.round(2).to_s, 0, 0, 20) if @show_fps
     end
 
     def draw
-      @font.draw("FPS: "+@fps.round(2).to_s, 0, 0, 20) if @show_fps
+      @window.font.draw("FPS: "+@fps.round(2).to_s, 0, 0, 20) if @show_fps
     end
   end

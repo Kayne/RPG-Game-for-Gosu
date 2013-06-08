@@ -8,7 +8,6 @@ class Player
   def initialize(window, x, y)
     @window = window
     @config = Settings.instance
-    @font = Font.new(@window, @config['font_name'], @config['font_size'])
 
     @x = ((x-1)*32)
     @y = ((y-1)*32)-24
@@ -103,26 +102,26 @@ class Player
       @window_menu.update
     end
 
-    @x_pies = @x + (@pose.width/2)
-    @y_pies = @y + @pose.height
+    x_pies = @x + (@pose.width/2)
+    y_pies = @y + @pose.height
     if @window.button_down?(Button::KbLeft) and @x > 0 - @window.scene.screen_x
       @direccion = :left
-      if not @window.scene.mapa.solid(@x_pies-16, @y_pies) and not @window.scene.solid_event_infront?(self)
+      if not @window.scene.mapa.solid(x_pies-16, y_pies) and not @window.scene.solid_event_infront?(self)
         walk
       end
     elsif @window.button_down?(Button::KbRight) and @x < (@window.scene.mapa.width * 32) - @pose.width
       @direccion = :right
-      if not @window.scene.mapa.solid(@x_pies+16, @y_pies) and not @window.scene.solid_event_infront?(self)
+      if not @window.scene.mapa.solid(x_pies+16, y_pies) and not @window.scene.solid_event_infront?(self)
         walk
       end
     elsif @window.button_down?(Button::KbUp) and @y > 0 - @window.scene.screen_y
       @direccion = :up
-      if not @window.scene.mapa.solid(@x_pies, @y_pies-16) and not @window.scene.solid_event_infront?(self)
+      if not @window.scene.mapa.solid(x_pies, y_pies-16) and not @window.scene.solid_event_infront?(self)
         walk
       end
     elsif @window.button_down?(Button::KbDown) and @y < (@window.scene.mapa.height * 32) - @pose.height
       @direccion = :down
-      if not @window.scene.mapa.solid(@x_pies, @y_pies+6) and not @window.scene.solid_event_infront?(self)
+      if not @window.scene.mapa.solid(x_pies, y_pies+6) and not @window.scene.solid_event_infront?(self)
         walk
       end
     else 
