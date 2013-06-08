@@ -4,11 +4,6 @@ class Scene_Menu < Scene
   def initialize(window)
     super(window)
     @background = Image.new(window, "./media/back.png", true)
-    
-    @time = 0
-    @fading = :in
-    @fade_time = 255
-    @color = Color.new(@fade_time, 0, 0 ,0)
 
     @window_menu = Window_Menu.new(@window, 160, 
       {

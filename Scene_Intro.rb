@@ -2,10 +2,6 @@ class Scene_Intro < Scene
   def initialize(window)
     super(window)
     @background = Image.new(window, "./media/background.png", true)
-    @time = 0
-    @fading = :in
-    @fade_time = 255
-    @color = Color.new(@fade_time, 0, 0 ,0)
     @window.audio.play_music("FromHere.ogg")
     set_folding(Scene_Menu.new(@window))
   end

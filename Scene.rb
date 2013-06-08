@@ -3,6 +3,11 @@ class Scene
   def initialize(window)
     @window = window
     @config = Settings.instance
+
+    @time = 0
+    @fading = :in
+    @fade_time = 255
+    @color = Color.new(@fade_time, 0, 0 ,0)
   end
 
   def set_folding(where)
