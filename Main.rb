@@ -8,6 +8,7 @@ include Gosu
 require './Settings.rb'
 require './Scene.rb'
 require './Window.rb'
+require './Character.rb'
 require './Player.rb'
 require './Tileset.rb'
 require './Map.rb'

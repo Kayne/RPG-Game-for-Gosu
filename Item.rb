@@ -1,8 +1,8 @@
 class Item
   attr_reader :name, :description
 
-  def initialize(character, item)
-    @character = character
+  def initialize(hero, item)
+    @hero = hero
     @name, @action, @description, @usable_once = item[1], eval("lambda { #{item[4]} }"), item[2], eval(item[3])
   end
 

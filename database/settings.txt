@@ -1,4 +1,4 @@
-character_graphic;"media/charasets/hero.png"
+character_graphic;"/hero"
 map;"./media/maps/Test Map.txt"
 map_graphic;"./media/tileset.png"
 save_dir;'./saves'

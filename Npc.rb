@@ -1,22 +1,19 @@
-class Npc
+class Npc < Character
   attr_accessor :x, :y, :z, :direccion
   attr_reader :solid, :message, :commands
 
   def initialize(window, x, y, filename, movement=:static, face=:down, solid=true, width=32, height=48, speed=2, sound=nil, message='', route='', commands={})
-    @window = window
-    @config = Settings.instance
+    
+    super(window, filename, speed, direccion, width, height)
+
     @x = (x*32)
     @y = (y*32)-24
     @z = 2
     @movement_type = movement
     @face = face
-    @poses = Image.load_tiles(window, "./media/charasets/"+filename+".png", width.to_i, height.to_i, false)
-    @pose = @poses[0]
-    @direccion = :down
     @solid = solid
     @route = route
     @commands = commands
-    @speed = speed
     @step = 15
     @musicInstance = nil
     @sound = sound
@@ -46,24 +43,7 @@ class Npc
   end
 
   def walk
-    case @direccion
-      when :up
-        for i in 0...@speed
-          @y -= 1 if not @window.scene.solid_event_infront?(self)
-        end
-      when :down
-        for i in 0...@speed
-          @y += 1 if not @window.scene.solid_event_infront?(self)
-        end
-      when :left
-        for i in 0...@speed
-          @x -= 1 if not @window.scene.solid_event_infront?(self)
-        end
-      when :right
-        for i in 0...@speed
-          @x += 1 if not @window.scene.solid_event_infront?(self)
-        end
-    end
+    super
     @step += 1
     return [@x, @y]
   end

@@ -5,7 +5,7 @@ class Scene_Map < Scene
     super(window)
     @screen_x, @screen_y = 0, 0
     @mapa = Map.new(@window, map, tileset)
-    @player = Player.new(@window, @config['player_x'], @config['player_y'])
+    @player = Player.new(@window, @config['character_graphic'], 3, :down, @config['player_x'], @config['player_y'])
     @npcs = Array.new
     load_npcs
   end

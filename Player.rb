@@ -1,22 +1,18 @@
-class Player
+class Player < Character
   attr_accessor :x
   attr_accessor :y
   attr_accessor :z
   attr_accessor :direccion
   attr_reader :start_x, :start_y
   attr_accessor :window_menu
-  def initialize(window, x, y)
+  def initialize(window, filename, speed, direccion, x, y)
+    super(window, filename, speed, direccion, 32, 48)
     @window = window
     @config = Settings.instance
 
     @x = ((x-1)*32)
     @y = ((y-1)*32)-24
     @z = 3
-
-    @poses = Gosu::Image.load_tiles(@window, @config['character_graphic'], 32, 48, false)
-    @pose = @poses[0]
-    @direccion = @config['player_direccion']
-    @speed = 3
 
     @window_menu = nil
   end
@@ -26,25 +22,7 @@ class Player
   end
 
   def walk
-    case @direccion
-      when :up
-        for i in 0...@speed
-          @y -= 1 if not @window.scene.solid_event_infront?(self)
-        end
-      when :down
-        for i in 0...@speed
-          @y += 1 if not @window.scene.solid_event_infront?(self)
-        end
-      when :left
-        for i in 0...@speed
-          @x -= 1 if not @window.scene.solid_event_infront?(self)
-        end
-      when :right
-        for i in 0...@speed
-          @x += 1 if not @window.scene.solid_event_infront?(self)
-        end
-    end
-    return [@x, @y]
+    super
   end
   
   def draw
