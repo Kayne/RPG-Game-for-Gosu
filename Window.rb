@@ -20,10 +20,6 @@ class GameWindow < Window
 
     @pause = false
   end
-  
-  # def needs_cursor?
-  #   true
-  # end
 
   def check_timers
     @timers.each { |t| t.update }
