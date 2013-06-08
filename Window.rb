@@ -106,7 +106,7 @@ class GameWindow < Window
     if id == KbF
       @fps.show_fps = (@fps.show_fps?) ? false : true
     end
-    if id == KbC
+    if id == KbC and not @message.show?
       if @scene.kind_of?(Scene_Character)
         @scene = Transition.new(self, Scene_Map.new(self, @config['map'], @config['map_graphic']), :in, false)
       else
