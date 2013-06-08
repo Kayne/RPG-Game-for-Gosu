@@ -25,6 +25,10 @@ class Npc
     eval_commands
   end
 
+  def update_x_and_y(x, y)
+    @x, @y = x, y
+  end
+
   def eval_commands
     commands.each { |k, v| commands[k] = eval("lambda { #{v} }") }
   end

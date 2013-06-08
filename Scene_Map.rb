@@ -1,5 +1,5 @@
 class Scene_Map < Scene
-  attr_reader :mapa, :player, :screen_x, :screen_y
+  attr_reader :mapa, :player, :screen_x, :screen_y, :npcs
 
   def initialize(window, map, tileset)
     super(window)
@@ -7,8 +7,18 @@ class Scene_Map < Scene
     @mapa = Map.new(@window, map, tileset)
     @player = Player.new(@window, @config['player_x'], @config['player_y'])
     @npcs = Array.new
+    load_npcs
+  end
+
+  def load_npcs
+    i = 0
     @mapa.npcs.each do |npc|
       @npcs.push(Npc.new(@window, *Database.load_npcs(npc)))
+      if not @config['npcs_position'].nil?
+        @npcs.last.x = @config['npcs_position'][i][0]
+        @npcs.last.y = @config['npcs_position'][i][1]
+      end
+      i += 1
     end
   end
 

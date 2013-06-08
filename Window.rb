@@ -55,6 +55,20 @@ class GameWindow < Window
 
   end
 
+  def save_npcs_position
+    i = 0
+    @config['npcs_position'] = Hash.new
+    @scene.npcs.each do |npc|
+      @config['npcs_position'][i] = [npc.x, npc.y]
+      i += 1
+    end
+  end
+
+  def save_player_position
+    @config['player_x'], @config['player_y'] =  @scene.player.get_actual_position
+    @config['player_direccion'] = @scene.player.direccion
+  end
+
   def button_down(id)
     if @scene.kind_of?(Scene_Character) or @scene.kind_of?(Scene_Menu)
       @scene.window_menu.button_down(id)
@@ -72,8 +86,10 @@ class GameWindow < Window
     if id == KbEscape
       @pause = false
       if @scene.kind_of?(Scene_Map)
-        @config['player_x'], @config['player_y'] =  @scene.player.get_actual_position
-        @config['player_direccion'] = @scene.player.direccion
+        
+        save_player_position
+        save_npcs_position
+        
         @scene = Transition.new(self, Scene_Menu.new(self), :in, false)
 
       elsif @scene.kind_of?(Scene_Character)
@@ -94,8 +110,8 @@ class GameWindow < Window
       if @scene.kind_of?(Scene_Character)
         @scene = Transition.new(self, Scene_Map.new(self, @config['map'], @config['map_graphic']), :in, false)
       else
-        @config['player_x'], @config['player_y'] =  @scene.player.get_actual_position
-        @config['player_direccion'] = @scene.player.direccion
+        save_player_position
+        save_npcs_position
         @scene = Transition.new(self, Scene_Character.new(self), :in, false)
       end
     end
