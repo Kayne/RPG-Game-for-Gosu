@@ -4,7 +4,7 @@ class Scene_Character < Scene
   def initialize(window)
     super(window)
     @items = Hash.new
-    window.character.items.each do |item|
+    window.hero.items.each do |item|
       @items[item.name] = item
     end
     @window_menu = Window_Menu.new(@window, 160, @items, 0)
@@ -21,8 +21,8 @@ class Scene_Character < Scene
   def draw
     @window_menu.draw if @window_menu.active?
     @window.font.draw("HP", @window.width-140, 0, 20)
-    @window_menu.drawHPBar(@window.width-100, 0, 100, 20, Color.new(255, 0, 255, 0), Color.new(255, 0, 100, 0), @window.character.hp, 100)
+    @window_menu.drawHPBar(@window.width-100, 0, 100, 20, Color.new(255, 0, 255, 0), Color.new(255, 0, 100, 0), @window.hero.hp, 100)
     @window.font.draw("EXP", @window.width-140, 25, 20)
-    @window_menu.drawEXPBar(@window.width-100, 25, 100, 20, Color.new(255, 0, 0, 255), Color.new(255, 0, 0, 100), @window.character.exp, 100)
+    @window_menu.drawEXPBar(@window.width-100, 25, 100, 20, Color.new(255, 0, 0, 255), Color.new(255, 0, 0, 100), @window.hero.exp, 100)
   end
 end

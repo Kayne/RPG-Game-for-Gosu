@@ -12,4 +12,4 @@ sound:
 message:Znalazłem ten klucz i nie wiem co z nim zrobić. Chcesz go?
 route:
 commands:
-"Weź klucz";;;@window.character.add_item($data_items[1])
+"Weź klucz";;;@window.hero.add_item($data_items[1])

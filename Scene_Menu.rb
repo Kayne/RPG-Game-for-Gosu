@@ -8,7 +8,7 @@ class Scene_Menu < Scene
     @window_menu = Window_Menu.new(@window, 160, 
       {
       (@config['play'].nil?) ? "New game" : "Continue" => lambda { @fading = :out; @config['play'] = true } ,
-      "Save" => lambda { @window.character.save_to_file(Time.new.strftime("%Y-%m-%d_%H-%M")) },
+      "Save" => lambda { @window.hero.save_to_file(Time.new.strftime("%Y-%m-%d_%H-%M")) },
       "Load" => lambda { nil },
       "Exit" => lambda { @window.close }
       }, 

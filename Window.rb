@@ -1,5 +1,5 @@
 class GameWindow < Window
-  attr_reader :screen_x, :screen_y, :character
+  attr_reader :screen_x, :screen_y, :hero
   attr_accessor :scene, :pause, :audio, :message, :timers, :font
 
   def initialize
@@ -8,7 +8,7 @@ class GameWindow < Window
 
     @config = Settings.instance
     Database.load_items
-    @character = Character.new("Jack", 1, 50, 50, 0)
+    @hero = Hero.new("Jack", 1, 50, 50, 0)
     @audio = Audio.instance
     @audio.set_window(self)
     @fps = FPSCounter.new(self)

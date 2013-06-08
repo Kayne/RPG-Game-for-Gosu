@@ -1,4 +1,4 @@
-class Character
+class Hero
   attr_reader :name, :level, :max_hp, :hp, :exp, :items
 
   def initialize(name, level, hp, max_hp, exp)

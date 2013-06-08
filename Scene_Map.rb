@@ -22,52 +22,52 @@ class Scene_Map < Scene
     end
   end
 
-  def solid_event_infront?(character)
-    case character.direccion
+  def solid_event_infront?(hero)
+    case hero.direccion
       when :left
         for i in 0...@npcs.size
-          return true if @npcs[i].solid == true and @npcs[i].x == character.x - 24 and character.y >= @npcs[i].y - 20 and character.y <= @npcs[i].y + 20
+          return true if @npcs[i].solid == true and @npcs[i].x == hero.x - 24 and hero.y >= @npcs[i].y - 20 and hero.y <= @npcs[i].y + 20
         end
-        return true if @player.x == character.x - 24 and character.y >= @player.y and character.y <= @player.y + 20
+        return true if @player.x == hero.x - 24 and hero.y >= @player.y and hero.y <= @player.y + 20
         return false
       when :right
         for i in 0...@npcs.size
-          return true if @npcs[i].solid == true and @npcs[i].x == character.x + 24 and character.y >= @npcs[i].y - 20 and character.y <= @npcs[i].y + 20
+          return true if @npcs[i].solid == true and @npcs[i].x == hero.x + 24 and hero.y >= @npcs[i].y - 20 and hero.y <= @npcs[i].y + 20
         end
-        return true if @player.x == character.x + 24 and character.y >= @player.y - 20 and character.y <= @player.y + 20
+        return true if @player.x == hero.x + 24 and hero.y >= @player.y - 20 and hero.y <= @player.y + 20
         return false
       when :up
         for i in 0...@npcs.size
-          return true if @npcs[i].solid == true and @npcs[i].y == character.y - 16 and character.x >= @npcs[i].x - 20 and character.x <= @npcs[i].x + 20
+          return true if @npcs[i].solid == true and @npcs[i].y == hero.y - 16 and hero.x >= @npcs[i].x - 20 and hero.x <= @npcs[i].x + 20
         end
-        return true if @player.y == character.y - 16 and character.x >= @player.x - 20 and character.x <= @player.x + 20
+        return true if @player.y == hero.y - 16 and hero.x >= @player.x - 20 and hero.x <= @player.x + 20
         return false
       when :down
         for i in 0...@npcs.size
-          return true if @npcs[i].solid == true and @npcs[i].y == character.y + 16 and character.x >= @npcs[i].x - 20 and character.x <= @npcs[i].x + 20
+          return true if @npcs[i].solid == true and @npcs[i].y == hero.y + 16 and hero.x >= @npcs[i].x - 20 and hero.x <= @npcs[i].x + 20
         end
-        return true if @player.y == character.y + 16 and character.x >= @player.x - 20 and character.x <= @player.x + 20
+        return true if @player.y == hero.y + 16 and hero.x >= @player.x - 20 and hero.x <= @player.x + 20
         return false
     end
   end
 
-  def get_solid_event_infront(character)
-    case character.direccion
+  def get_solid_event_infront(hero)
+    case hero.direccion
       when :left
         for i in 0...@npcs.size
-          return @npcs[i] if @npcs[i].solid == true and @npcs[i].x == character.x - 24 and character.y >= @npcs[i].y - 20 and character.y <= @npcs[i].y + 20
+          return @npcs[i] if @npcs[i].solid == true and @npcs[i].x == hero.x - 24 and hero.y >= @npcs[i].y - 20 and hero.y <= @npcs[i].y + 20
         end
       when :right
         for i in 0...@npcs.size
-          return @npcs[i] if @npcs[i].solid == true and @npcs[i].x == character.x + 24 and character.y >= @npcs[i].y - 20 and character.y <= @npcs[i].y + 20
+          return @npcs[i] if @npcs[i].solid == true and @npcs[i].x == hero.x + 24 and hero.y >= @npcs[i].y - 20 and hero.y <= @npcs[i].y + 20
         end
       when :up
         for i in 0...@npcs.size
-          return @npcs[i] if @npcs[i].solid == true and @npcs[i].y == character.y - 16 and character.x >= @npcs[i].x - 20 and character.x <= @npcs[i].x + 20
+          return @npcs[i] if @npcs[i].solid == true and @npcs[i].y == hero.y - 16 and hero.x >= @npcs[i].x - 20 and hero.x <= @npcs[i].x + 20
         end
       when :down
         for i in 0...@npcs.size
-          return @npcs[i] if @npcs[i].solid == true and @npcs[i].y == character.y + 16 and character.x >= @npcs[i].x - 20 and character.x <= @npcs[i].x + 20
+          return @npcs[i] if @npcs[i].solid == true and @npcs[i].y == hero.y + 16 and hero.x >= @npcs[i].x - 20 and hero.x <= @npcs[i].x + 20
         end
     end
   end
