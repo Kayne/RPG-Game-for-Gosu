@@ -21,11 +21,6 @@ class GameWindow < Window
     @pause = false
   end
 
-  def check_timers
-    @timers.each { |t| t.update }
-    @timers.delete_if { |t| t.finished? }
-  end
-
   def update
     if not @pause
       @scene.update
@@ -49,20 +44,6 @@ class GameWindow < Window
       @message.show_message
     end
 
-  end
-
-  def save_npcs_position
-    i = 0
-    @config['npcs_position'] = Hash.new
-    @scene.npcs.each do |npc|
-      @config['npcs_position'][i] = [npc.x, npc.y]
-      i += 1
-    end
-  end
-
-  def save_player_position
-    @config['player_x'], @config['player_y'] =  @scene.player.get_actual_position
-    @config['player_direccion'] = @scene.player.direccion
   end
 
   def button_down(id)
@@ -112,4 +93,27 @@ class GameWindow < Window
       end
     end
   end
+
+  private
+  
+  def save_npcs_position
+    i = 0
+    @config['npcs_position'] = Hash.new
+    @scene.npcs.each do |npc|
+      @config['npcs_position'][i] = [npc.x, npc.y]
+      i += 1
+    end
+  end
+
+  def save_player_position
+    @config['player_x'], @config['player_y'] =  @scene.player.get_actual_position
+    @config['player_direccion'] = @scene.player.direccion
+  end
+
+  def check_timers
+    @timers.each { |t| t.update }
+    @timers.delete_if { |t| t.finished? }
+  end
+
+
 end
