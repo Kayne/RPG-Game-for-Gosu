@@ -3,7 +3,7 @@ class Item
 
   def initialize(character, item)
     @character = character
-    @name, @action, @description, @usable_once = item[1], eval("lambda { #{item[4]} }"), item[2], item[3]
+    @name, @action, @description, @usable_once = item[1], eval("lambda { #{item[4]} }"), item[2], eval(item[3])
   end
 
   def call

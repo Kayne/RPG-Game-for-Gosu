@@ -42,7 +42,7 @@ class Window_Menu < Window_Selectable
 				@window.audio.play_sound_effect("accept.ogg")
 				if @window.scene.kind_of?(Scene_Character)
 					@window.character.use_item(@options[@options.keys[@index]])
-					if @options[@options.keys[@index]].usable_once? == true
+					if @options[@options.keys[@index]].usable_once?
 						delete(@index)
 					end
 				else
