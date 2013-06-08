@@ -4,7 +4,6 @@ class Scene_Menu < Scene
   def initialize(window)
     super(window)
     @background = Image.new(window, "./media/back.png", true)
-    @config = Settings.instance
     
     @time = 0
     @fading = :in
@@ -13,34 +12,19 @@ class Scene_Menu < Scene
 
     @window_menu = Window_Menu.new(@window, 160, 
       {
-      (@config['play'].nil?) ? "New game" : "Continue" => lambda { @fading = :out } ,
+      (@config['play'].nil?) ? "New game" : "Continue" => lambda { @fading = :out; @config['play'] = true } ,
       "Save" => lambda { @window.character.save_to_file(Time.new.strftime("%Y-%m-%d_%H-%M")) },
       "Load" => lambda { nil },
-      "Exit" => lambda { @window.close }}, 
+      "Exit" => lambda { @window.close }
+      }, 
       0, @window.width/2-80, @window.height/2)
     @window_menu.active = true
+
+    set_folding(Scene_Map.new(@window, @config['map'], @config['map_graphic']))
   end
   
   def update
-
-    @color = Color.new(@fade_time, 0, 0 ,0)
-    case @fading
-      
-    when :in
-      if @fade_time <= 0
-        @fading = :wait
-      else
-        @fade_time -= 15
-      end
-    when :out
-      if @fade_time >= 255
-        @config['play'] = true
-        @window.scene = Transition.new(@window, Scene_Map.new(@window, @config['map'], @config['map_graphic']), :in, false)
-      else
-        @fade_time += 15
-      end
-    end
-
+    folding
     @window_menu.update
   end
 
