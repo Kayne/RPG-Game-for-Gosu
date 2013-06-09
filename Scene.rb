@@ -7,6 +7,7 @@ class Scene
     @time = 0
     @fading = :in
     @fade_time = 255
+    @fade_pause = false
     @color = Color.new(@fade_time, 0, 0 ,0)
   end
 
@@ -24,9 +25,12 @@ class Scene
           @fade_time -= 15
         end
       when :wait
-        @time += 1
-        if @time >= 200
-          @fading = :out
+        if not @fade_pause
+          @time += 1
+          if @time >= 200
+            @fading = :out
+            @fade_pause = false
+          end
         end
       when :out
         if @fade_time >= 255

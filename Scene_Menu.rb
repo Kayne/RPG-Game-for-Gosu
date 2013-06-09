@@ -14,8 +14,8 @@ class Scene_Menu < Scene
       }, 
       0, @window.width/2-80, @window.height/2)
     @window_menu.activate
-
-    set_folding(Scene_Map.new(@window, @config['map'], @config['map_graphic']))
+    @fade_pause = true
+    set_folding(Scene_Map.new(@window, @config['map'], @config['map_graphic']))    
   end
   
   def update
