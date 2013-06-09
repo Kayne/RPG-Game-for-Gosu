@@ -76,7 +76,7 @@ class Player < Character
 
     if @window_menu.nil?
       meet_npc
-    else @window_menu.nil?
+    else
       @window_menu.update
     end
 
@@ -126,7 +126,7 @@ class Player < Character
 
         if npc.commands?
           @window_menu = Window_Menu.new(@window, 160, npc.commands, 0, @window.width/2-80, @window.height/2)
-          @window_menu.active = true
+          @window_menu.activate
         end
       
         npc.play_sound_if_any

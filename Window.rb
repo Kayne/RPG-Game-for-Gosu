@@ -26,6 +26,7 @@ class GameWindow < Window
       @scene.update
       @fps.update
       check_new_level
+      check_if_dead
     end
     if @pause and not @scene.player.window_menu.nil?
       @scene.player.window_menu.update
@@ -87,7 +88,7 @@ class GameWindow < Window
     if id == KbC and not @message.show?
       if @scene.kind_of?(Scene_Character)
         @scene = Transition.new(self, Scene_Map.new(self, @config['map'], @config['map_graphic']), :in, false)
-      else
+      elsif @scene.kind_of?(Scene_Map)
         save_player_position
         save_npcs_position
         @scene = Transition.new(self, Scene_Character.new(self), :in, false)
@@ -126,5 +127,14 @@ class GameWindow < Window
     end
   end
 
+  def check_if_dead
+    if @hero.dead?
+      @pause = true
+      @hero.next_level
+      @message.message = "Niestety, zginales. W tym swiecie wskrzeszanie nie dziala - zegnaj!"
+      @message.show = true
+      @timers << Timer.new(5, lambda {close})
+    end
+  end
 
 end

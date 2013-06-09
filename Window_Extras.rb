@@ -1,5 +1,5 @@
 class Window_Extras
-	attr_accessor :x, :y, :z, :active
+	attr_accessor :x, :y, :z
 
 	def initialize(window, x, y, width, height, z = 10)
 		@config = Settings.instance
@@ -9,6 +9,18 @@ class Window_Extras
 		@y = (y != 0) ? y : 0
 		@width = (width != 0) ? width : 0
 		@height = (height != 0) ? height : 0
+		deactive
+	end
+
+	def active?
+		@active
+	end
+
+	def activate
+		@active = true
+	end
+
+	def deactive
 		@active = false
 	end
 	

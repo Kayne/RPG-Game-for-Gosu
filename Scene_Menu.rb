@@ -13,7 +13,7 @@ class Scene_Menu < Scene
       "Exit" => lambda { @window.close }
       }, 
       0, @window.width/2-80, @window.height/2)
-    @window_menu.active = true
+    @window_menu.activate
 
     set_folding(Scene_Map.new(@window, @config['map'], @config['map_graphic']))
   end

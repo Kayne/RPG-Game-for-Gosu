@@ -6,10 +6,6 @@ class Window_Menu < Window_Selectable
 		@options = options
 		@font = Font.new(window, @config['font_name'], @config['font_size'])
 	end
-
-	def active?
-		@active
-	end
 	
 	def draw_commands
 		spacing = 32
@@ -43,6 +39,7 @@ class Window_Menu < Window_Selectable
 					end
 				else
 					call(@index)
+					deactive if @window.scene.kind_of?(Scene_Map)
 				end
 			end
 		end
@@ -51,7 +48,7 @@ class Window_Menu < Window_Selectable
 	def update
 		super
 		if @options.empty?
-			@active = false
+			deactive
 		end
 	end
 	
