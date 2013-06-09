@@ -25,6 +25,7 @@ class GameWindow < Window
     if not @pause
       @scene.update
       @fps.update
+      check_new_level
     end
     if @pause and not @scene.player.window_menu.nil?
       @scene.player.window_menu.update
@@ -113,6 +114,16 @@ class GameWindow < Window
   def check_timers
     @timers.each { |t| t.update }
     @timers.delete_if { |t| t.finished? }
+  end
+
+  def check_new_level
+    if @hero.next_level?
+      @pause = true
+      @hero.next_level
+      @message.message = "Zdobyles poziom!"
+      @message.show = true
+      @timers << Timer.new(2, lambda {@message.hide_message; @scene.player.window_menu = nil; @pause = false})
+    end
   end
 
 
