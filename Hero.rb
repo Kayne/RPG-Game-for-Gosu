@@ -31,6 +31,11 @@ class Hero
     @hp += hp
   end
 
+  def damage dmg
+    @hp -= dmg
+    @hp = 0 if @hp < 0
+  end
+
   def add_exp exp
     @exp += exp
   end

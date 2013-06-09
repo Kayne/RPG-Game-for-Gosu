@@ -12,3 +12,4 @@ sound:kotek.wav
 message:Miauuu!
 route:
 commands:
+"Złap kota!";;;@window.hero.add_exp(15);@window.hero.damage(10)
