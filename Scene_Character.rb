@@ -22,9 +22,9 @@ class Scene_Character < Scene
     @window_menu.draw if @window_menu.active?
     @window.font.draw(@window.hero.name, @window.width-140, 0, 20)
     @window.font.draw("HP", @window.width-140, 25, 20)
-    @window_menu.drawHPBar(@window.width-100, 25, 100, 20, Color.new(255, 0, 255, 0), Color.new(255, 0, 100, 0), @window.hero.hp, 100)
+    @window_menu.drawHPBar(@window.width-100, 25, 100, 20, Color.new(255, 0, 255, 0), Color.new(255, 0, 100, 0), @window.hero.hp, @window.hero.max_hp)
     @window.font.draw("EXP", @window.width-140, 50, 20)
-    @window_menu.drawEXPBar(@window.width-100, 50, 100, 20, Color.new(255, 0, 0, 255), Color.new(255, 0, 0, 100), @window.hero.exp, 100)
+    @window_menu.drawEXPBar(@window.width-100, 50, 100, 20, Color.new(255, 0, 0, 255), Color.new(255, 0, 0, 100), @window.hero.exp, @window.hero.max_exp)
     @window.font.draw("Level: " + @window.hero.level.to_s, @window.width-140, 75, 20)
   end
 end

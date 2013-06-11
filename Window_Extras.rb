@@ -54,9 +54,8 @@ class Window_Extras
 		@window.draw_quad(x, y, @white, x + w, y, @white, x, y + h, @white, x + w, y + h, @white, z)    
 		@window.draw_quad(x + 1, y + 1, @black, x + w - 1, y + 1, @black, x + 1, y + h - 1, @black, x + w - 1, y + h - 1, @black, z)   
 		# gradient
-		pre = (hp*w)/100
-		lenght = (pre * 100) / max_hp
-		@window.draw_quad(x + 1, y + 1, color1, x + lenght - 1, y + 1, color1, x + 1, y + h - 1, color2, x + lenght - 1, y + h - 1, color2, z) 
+		length = (hp*w) / max_hp
+		@window.draw_quad(x + 1, y + 1, color1, x + length - 1, y + 1, color1, x + 1, y + h - 1, color2, x + length - 1, y + h - 1, color2, z) 
 	end
 
 	def drawEXPBar(x, y, w, h, color1, color2, exp, max_exp, z=1)  
@@ -64,9 +63,8 @@ class Window_Extras
 		@window.draw_quad(x, y, @white, x + w, y, @white, x, y + h, @white, x + w, y + h, @white, z)    
 		@window.draw_quad(x + 1, y + 1, @black, x + w - 1, y + 1, @black, x + 1, y + h - 1, @black, x + w - 1, y + h - 1, @black, z)    
 		# gradient
-		pre = (exp*w)/100
-		lenght = (pre * 100) / max_exp
-		@window.draw_quad(x + 1, y + 1, color1, x + lenght - 1, y + 1, color1, x + 1, y + h - 1, color2, x + lenght - 1, y + h - 1, color2, z) 
+		length = (exp*w) / max_exp
+		@window.draw_quad(x + 1, y + 1, color1, x + length - 1, y + 1, color1, x + 1, y + h - 1, color2, x + length - 1, y + h - 1, color2, z) 
 	end
 
 end
