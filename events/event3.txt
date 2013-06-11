@@ -9,7 +9,7 @@ width:32
 height:48
 speed:2
 sound:
-message:Znalazłem ten klucz i nie wiem co z nim zrobić. Chcesz go?
+message:I found this key under rock and I don't know what to do with it. Want it?
 route:
 commands:
-"Weź klucz";;;@window.hero.add_item(@window.items[1])
+"Take key";;;@window.hero.add_item(@window.items[1])

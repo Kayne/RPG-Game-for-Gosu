@@ -3,6 +3,7 @@ class Scene_Character < Scene
 
   def initialize(window)
     super(window)
+    @background = Image.new(window, "./media/hero_portrait.png", true)
     @items = Hash.new
     window.hero.items.each do |item|
       @items[item.name] = item
@@ -19,6 +20,7 @@ class Scene_Character < Scene
   end
   
   def draw
+    @background.draw(0, 0, 0)
     @window_menu.draw if @window_menu.active?
     @window.font.draw(@window.hero.name, @window.width-140, 0, 20)
     @window.font.draw("HP", @window.width-140, 25, 20)

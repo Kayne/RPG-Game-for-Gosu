@@ -1,14 +1,15 @@
  First line is ignored --- To use correctly X and Y use tiles, not pixels, for example x:5 not x:176
-x:8
-y:8
+x:3
+y:3
 filename:npc4
 movement:random
 face:down
 solid:true
-width:111
-height:62
-speed:1
+width:32
+height:32
+speed:5
 sound:kotek.wav
 message:Miauuu!
 route:
 commands:
+"Catch the cat!";;;@window.hero.add_exp(15);@window.hero.damage(10)

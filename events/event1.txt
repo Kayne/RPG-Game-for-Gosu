@@ -9,7 +9,7 @@ width:32
 height:48
 speed:2
 sound:
-message:Siemka, co tam? Rozdaję mikstury życia. Chcesz?
+message:Howdy! I've got plenty health potions. Want's some?
 route:
 commands:
-"Weź miksturę";;;@window.hero.add_item(@window.items[0])
+"Take potion";;;@window.hero.add_item(@window.items[0])
