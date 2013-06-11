@@ -16,6 +16,7 @@ class Scene_Menu < Scene
     @window_menu.activate
     @fade_pause = true
     set_folding(Scene_Map.new(@window, @config['map'], @config['map_graphic']))    
+    @window.message.show = false
   end
   
   def update
