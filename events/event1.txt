@@ -7,7 +7,7 @@ face:down
 solid:true
 width:32
 height:48
-speed:2
+speed:1
 sound:
 message:Howdy! I've got plenty health potions. Want's some?
 route:
