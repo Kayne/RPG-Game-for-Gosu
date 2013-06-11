@@ -1,8 +1,9 @@
 class Hero
-  attr_reader :name, :level, :max_hp, :hp, :exp, :items
+  attr_reader :name, :level, :max_hp, :hp, :exp, :max_exp, :items
 
   def initialize(name, level, hp, max_hp, exp)
     @name, @level, @hp, @max_hp, @exp = name, level, hp, max_hp, exp
+    @max_exp = 100*@level
     @config = Settings.instance
     @items = Array.new
   end
@@ -29,6 +30,7 @@ class Hero
 
   def heal hp
     @hp += hp
+    @hp = @max_hp if @hp > @max_hp
   end
 
   def damage dmg
