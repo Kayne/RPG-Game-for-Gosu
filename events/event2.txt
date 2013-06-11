@@ -12,4 +12,4 @@ sound:
 message:Nie mam teraz czasu! Weź kamienia!
 route:
 commands:
-"Weź kamień";;;@window.hero.add_item($data_items[2])
+"Weź kamień";;;@window.hero.add_item(@window.items[2])

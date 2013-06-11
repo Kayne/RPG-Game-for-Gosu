@@ -4,15 +4,14 @@ class Window_Menu < Window_Selectable
 	def initialize(window,width=192, options={}, index=0, x=0, y=0)
 		super(window, width, options.size * 32, 32, index, x, y)
 		@options = options
-		@font = Font.new(window, @config['font_name'], @config['font_size'])
 	end
 	
 	def draw_commands
 		spacing = 32
 		for i in 0...@options.size
 			position = spacing * i+1
-			adjust = @font.text_width(@options.keys[i], 1)
-			@font.draw(@options.keys[i], @x+((@width/2)-(adjust/2)), @y+8 + position, @z+1)
+			adjust = @window.font.text_width(@options.keys[i], 1)
+			@window.font.draw(@options.keys[i], @x+((@width/2)-(adjust/2)), @y+8 + position, @z+1)
 		end
 	end
 

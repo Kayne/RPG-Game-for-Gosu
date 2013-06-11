@@ -23,7 +23,7 @@ class Scene_Map < Scene
   end
 
   def solid_event_infront?(hero)
-    case hero.direccion
+    case hero.direction
       when :left
         for i in 0...@npcs.size
           return true if @npcs[i].solid == true and @npcs[i].x == hero.x - 24 and hero.y >= @npcs[i].y - 20 and hero.y <= @npcs[i].y + 20
@@ -52,7 +52,7 @@ class Scene_Map < Scene
   end
 
   def get_solid_event_infront(hero)
-    case hero.direccion
+    case hero.direction
       when :left
         for i in 0...@npcs.size
           return @npcs[i] if @npcs[i].solid == true and @npcs[i].x == hero.x - 24 and hero.y >= @npcs[i].y - 20 and hero.y <= @npcs[i].y + 20

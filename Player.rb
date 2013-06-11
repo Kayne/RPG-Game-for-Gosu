@@ -2,11 +2,11 @@ class Player < Character
   attr_accessor :x
   attr_accessor :y
   attr_accessor :z
-  attr_accessor :direccion
+  attr_accessor :direction
   attr_reader :start_x, :start_y
   attr_accessor :window_menu
-  def initialize(window, filename, speed, direccion, x, y)
-    super(window, filename, speed, direccion, 32, 48)
+  def initialize(window, filename, speed, direction, x, y)
+    super(window, filename, speed, direction, 32, 48)
     @window = window
     @config = Settings.instance
 
@@ -26,7 +26,7 @@ class Player < Character
   end
   
   def draw
-    if @direccion == :left and @window.button_down?(Button::KbLeft)
+    if @direction == :left and @window.button_down?(Button::KbLeft)
       if milliseconds / 175 % 4 == 0
         @pose = @poses[4]
       elsif milliseconds / 175 % 4 == 1
@@ -36,7 +36,7 @@ class Player < Character
       elsif milliseconds / 175 % 4 == 3
         @pose = @poses[7]
       end
-    elsif @direccion == :right and @window.button_down?(Button::KbRight)
+    elsif @direction == :right and @window.button_down?(Button::KbRight)
         if milliseconds / 175 % 4 == 0
           @pose = @poses[8]
         elsif milliseconds / 175 % 4 == 1
@@ -46,7 +46,7 @@ class Player < Character
         elsif milliseconds / 175 % 4 == 3
           @pose = @poses[11]
         end
-    elsif @direccion == :up and @window.button_down?(Button::KbUp)
+    elsif @direction == :up and @window.button_down?(Button::KbUp)
       if milliseconds / 175 % 4 == 0
           @pose = @poses[12]
         elsif milliseconds / 175 % 4 == 1
@@ -56,7 +56,7 @@ class Player < Character
         elsif milliseconds / 175 % 4 == 3
           @pose = @poses[15]
         end
-    elsif @direccion == :down and @window.button_down?(Button::KbDown)
+    elsif @direction == :down and @window.button_down?(Button::KbDown)
       if milliseconds / 175 % 4 == 0
           @pose = @poses[0]
         elsif milliseconds / 175 % 4 == 1
@@ -83,27 +83,27 @@ class Player < Character
     x_pies = @x + (@pose.width/2)
     y_pies = @y + @pose.height
     if @window.button_down?(Button::KbLeft) and @x > 0 - @window.scene.screen_x
-      @direccion = :left
+      @direction = :left
       if not @window.scene.mapa.solid(x_pies-16, y_pies) and not @window.scene.solid_event_infront?(self)
         walk
       end
     elsif @window.button_down?(Button::KbRight) and @x < (@window.scene.mapa.width * 32) - @pose.width
-      @direccion = :right
+      @direction = :right
       if not @window.scene.mapa.solid(x_pies+16, y_pies) and not @window.scene.solid_event_infront?(self)
         walk
       end
     elsif @window.button_down?(Button::KbUp) and @y > 0 - @window.scene.screen_y
-      @direccion = :up
+      @direction = :up
       if not @window.scene.mapa.solid(x_pies, y_pies-16) and not @window.scene.solid_event_infront?(self)
         walk
       end
     elsif @window.button_down?(Button::KbDown) and @y < (@window.scene.mapa.height * 32) - @pose.height
-      @direccion = :down
+      @direction = :down
       if not @window.scene.mapa.solid(x_pies, y_pies+6) and not @window.scene.solid_event_infront?(self)
         walk
       end
     else 
-      case @direccion
+      case @direction
         when :left
           @pose = @poses[4]
         when :right

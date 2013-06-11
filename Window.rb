@@ -1,13 +1,13 @@
 class GameWindow < Window
   attr_reader :screen_x, :screen_y, :hero
-  attr_accessor :scene, :pause, :audio, :message, :timers, :font
+  attr_accessor :scene, :pause, :audio, :message, :timers, :font, :items
 
   def initialize
     super(640, 480, false)
     self.caption = "Projekt"
 
     @config = Settings.instance
-    Database.load_items
+    @items = Database.load_items
     @hero = Hero.new("Jack", 1, 50, 50, 0)
     @audio = Audio.instance
     @audio.set_window(self)
@@ -109,7 +109,7 @@ class GameWindow < Window
 
   def save_player_position
     @config['player_x'], @config['player_y'] =  @scene.player.get_actual_position
-    @config['player_direccion'] = @scene.player.direccion
+    @config['player_direction'] = @scene.player.direction
   end
 
   def check_timers

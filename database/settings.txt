@@ -6,5 +6,5 @@ font_size;18
 font_name;"Verdana"
 player_x;7
 player_y;3
-player_direccion;:down
+player_direction;:down
 audio_path;'media/audio/'

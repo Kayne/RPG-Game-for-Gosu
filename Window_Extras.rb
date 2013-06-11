@@ -1,5 +1,4 @@
 class Window_Extras
-	attr_accessor :x, :y, :z
 
 	def initialize(window, x, y, width, height, z = 10)
 		@config = Settings.instance

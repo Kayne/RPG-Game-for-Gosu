@@ -43,6 +43,7 @@ class Map
       end
     end
   end
+  
   def solid(x, y)
     begin
       return true if @capa_2[x/32][y/32]
