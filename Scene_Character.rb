@@ -20,7 +20,8 @@ class Scene_Character < Scene
   end
   
   def draw
-    @background.draw(0, 0, 0)
+    @background.draw(350, 165, 0)
+    @window.font.draw("Press C or Escape to return", 0, 460, 20)
     @window_menu.draw if @window_menu.active?
     @window.font.draw(@window.hero.name, @window.width-140, 0, 20)
     @window.font.draw("HP", @window.width-140, 25, 20)
