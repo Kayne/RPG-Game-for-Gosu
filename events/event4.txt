@@ -9,7 +9,7 @@ width:32
 height:32
 speed:5
 sound:kotek.wav
-message:Miauuu!
+message:Meooooow!
 route:
 commands:
 "Catch the cat!";;;@window.hero.add_exp(15);@window.hero.damage(10)

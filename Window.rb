@@ -121,7 +121,7 @@ class GameWindow < Window
     if @hero.next_level?
       @pause = true
       @hero.next_level
-      @message.message = "Zdobyles poziom!"
+      @message.message = "You've got new level!"
       @message.show = true
       @timers << Timer.new(2, lambda {@message.hide_message; @scene.player.window_menu = nil; @pause = false})
     end
@@ -131,7 +131,7 @@ class GameWindow < Window
     if @hero.dead?
       @pause = true
       @hero.next_level
-      @message.message = "Niestety, zginales. W tym swiecie wskrzeszanie nie dziala - zegnaj!"
+      @message.message = "Unfortunately, you died. In this world there is no resurrection, so goodbye!"
       @message.show = true
       @timers << Timer.new(5, lambda {close})
     end
