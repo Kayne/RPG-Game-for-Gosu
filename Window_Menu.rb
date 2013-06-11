@@ -64,5 +64,11 @@ class Window_Menu < Window_Selectable
 
 	def delete(id)
 		@options.delete(@options.keys[id])
+		@height -= 32
+		if @index >= 1
+			@index -= 1
+		else
+			@index = 0
+		end
 	end
 end

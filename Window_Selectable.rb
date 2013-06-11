@@ -1,5 +1,4 @@
 class Window_Selectable < Window_Extras
-	attr_accessor :index
 	
 	def initialize(window,width, height, space, index=0, x=0, y=0)
 		super(window, 0, 0, width, 0)
